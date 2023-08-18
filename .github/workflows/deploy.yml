@@ -1,0 +1,40 @@
+####################################################################################################
+# The role of this workflow is to push the application to the gh-pages
+# branch of the repository, which will be used by GitHub Pages to deploy the application.
+#
+# This workflow will be triggered on every push to the main branch (which is protected)
+#
+# This workflow do not run tests, as if a push is made to the main branch, it means that
+# the tests have already been run and passed.
+####################################################################################################
+
+name: deploy-to-gh-pages
+run-name: "Deploy React app to GitHub Pages"
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 20.5.1
+      
+      - name: Install dependencies
+        run: npm install && npm install gh-pages --save-dev
+
+      - name: Configure Git
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "<>"
+
+      - name: Deploy to GitHub Pages
+        run: npm run deploy
