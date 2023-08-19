@@ -1,0 +1,52 @@
+####################################################################################################
+# The role of this workflow is to run the tests of the application.
+#
+# This workflow will be run on:
+#   - every push to any branch (except gh-pages)
+#   - any pull request to the main branch
+#
+# Tests performed:
+#   - check if it is possible to build the application
+#   - check if the application passes the tests
+#
+####################################################################################################
+
+name: test-project
+run-name: "Test React app"
+
+env:
+  PROD_BRANCH: ${{ vars.PROD_BRANCH }}
+
+on:
+  push:
+    branches:
+      - '*'
+    branches-ignore:
+      - $PROD_BRANCH
+      - main
+
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    name: "Build & Test"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 20.5.1
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build
+        run: npm run build
+
+      - name: Test
+        run: npm run test
