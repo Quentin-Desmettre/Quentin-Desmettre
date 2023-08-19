@@ -19,8 +19,6 @@ env:
 
 on:
   push:
-    branches:
-      - '*'
     branches-ignore:
       - $PROD_BRANCH
       - main
