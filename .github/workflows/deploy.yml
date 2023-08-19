@@ -50,7 +50,8 @@ jobs:
 
           npm run build
 
-          GLOBIGNORE="build"
+          GLOBIGNORE="build:.git:.:.."
+          echo Removing $(ls -d * .gitignore)
           rm -rf * .gitignore
 
           mv build/* .
