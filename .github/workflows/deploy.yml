@@ -10,6 +10,7 @@
 
 name: deploy-to-gh-pages
 run-name: "Deploy React app to GitHub Pages"
+
 on:
   push:
     branches:
@@ -27,14 +28,28 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 20.5.1
-      
+
       - name: Install dependencies
-        run: npm install && npm install gh-pages --save-dev
+        run: npm install
 
       - name: Configure Git
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "<>"
+          git config --global user.name "$GA_COMMITER_NAME"
+          git config --global user.email "$GA_COMMITER_EMAIL"
 
       - name: Deploy to GitHub Pages
-        run: npm run deploy
+        run: |
+          git branch -d $PROD_BRANCH || true
+          git checkout -b $PROD_BRANCH
+
+          npm run build
+
+          GLOBIGNORE="build"
+          rm -rf * .gitignore
+
+          mv build/* .
+          rm -rf build
+
+          git add .
+          git commit -m "$GA_DEPLOYMENT_COMMIT"
+          git push -f --set-upstream origin $PROD_BRANCH
