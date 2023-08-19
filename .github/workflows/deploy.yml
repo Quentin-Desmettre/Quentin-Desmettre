@@ -11,6 +11,12 @@
 name: deploy-to-gh-pages
 run-name: "Deploy React app to GitHub Pages"
 
+env:
+  PROD_BRANCH: ${{ vars.PROD_BRANCH }}
+  GA_COMMITER_EMAIL: ${{ vars.GA_COMMITER_EMAIL }}
+  GA_COMMITER_NAME: ${{ vars.GA_COMMITER_NAME }}
+  GA_DEPLOYMENT_COMMIT: ${{ vars.GA_DEPLOYMENT_COMMIT }}
+
 on:
   push:
     branches:
