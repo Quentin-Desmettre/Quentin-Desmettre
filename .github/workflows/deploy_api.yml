@@ -2,7 +2,7 @@ name: "Build WebSocket server and restart it"
 on:
   push:
     branches:
-      - main
+      - api
 jobs:
   deploy:
     name: "Deploy API to staging server"
