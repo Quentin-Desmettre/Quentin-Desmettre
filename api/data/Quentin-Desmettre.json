@@ -1,0 +1,79 @@
+{
+    "commits": 471,
+    "pull_requests": 46,
+    "projects": 16,
+    "languages": {
+        "C": {
+            "lines": 46655,
+            "bytes": 1198148
+        },
+        "C++": {
+            "lines": 44131,
+            "bytes": 1272513
+        },
+        "Python": {
+            "lines": 7836,
+            "bytes": 182974
+        },
+        "Objective-C": {
+            "lines": 5385,
+            "bytes": 17586
+        },
+        "Makefile": {
+            "lines": 2652,
+            "bytes": 54761
+        },
+        "Dart": {
+            "lines": 2227,
+            "bytes": 72532
+        },
+        "JavaScript": {
+            "lines": 585,
+            "bytes": 20769
+        },
+        "Shell": {
+            "lines": 307,
+            "bytes": 2849
+        },
+        "CMake": {
+            "lines": 232,
+            "bytes": 7990
+        },
+        "HTML": {
+            "lines": 147,
+            "bytes": 5655
+        },
+        "CSS": {
+            "lines": 51,
+            "bytes": 930
+        },
+        "Ruby": {
+            "lines": 45,
+            "bytes": 6055
+        },
+        "Swift": {
+            "lines": 44,
+            "bytes": 1367
+        },
+        "Dockerfile": {
+            "lines": 30,
+            "bytes": 597
+        },
+        "Java": {
+            "lines": 29,
+            "bytes": 1065
+        },
+        "QMake": {
+            "lines": 11,
+            "bytes": 126
+        },
+        "Kotlin": {
+            "lines": 6,
+            "bytes": 121
+        },
+        "Assembly": {
+            "lines": 0,
+            "bytes": 278634
+        }
+    }
+}
