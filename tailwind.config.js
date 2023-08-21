@@ -13,6 +13,8 @@ module.exports = {
         "button-background": "#238636",
         "light-background": "#161B22",
         "light-light-background": "#21262D",
+        "footer-text": "#D5D4CA",
+        "green": "#238636"
       }
     },
   },
