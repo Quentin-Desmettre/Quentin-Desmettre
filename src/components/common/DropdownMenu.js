@@ -49,14 +49,14 @@ const DropdownMenu = ({ selectedStyle, dropdownStyle, choicesStyle, options, sel
             </button>
             {isOpen && (
                 <div
-                    className={dropdownStyle + " absolute rounded right-5 py-0"}
+                    className={dropdownStyle + " absolute rounded right-5 py-0 z-50"}
                     role="menu"
                 >
                     {options.map((option) => (
                         <button
                             key={option.name}
                             onClick={() => handleOptionClick(option)}
-                            className={choicesStyle + " w-full px-4 py-2 text-sm"}
+                            className={choicesStyle + " w-full px-4 py-2 text-sm font-bold"}
                             role="menuitem"
                         >
                             <DropdownOption {...option} />

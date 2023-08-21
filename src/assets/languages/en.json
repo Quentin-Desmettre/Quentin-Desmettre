@@ -1,12 +1,12 @@
 {
-    "name": "Français",
+    "name": "English",
     "header": {
-        "home": "Accueil",
+        "home": "Home",
         "contact": "Contact",
-        "about": "À propos",
-        "hobbies": "Mes passions",
-        "experiences": "Expériences",
-        "projects": "Projets"
+        "about": "About",
+        "hobbies": "My hobbies",
+        "experiences": "Experiences",
+        "projects": "Projects"
     },
     "first_screen": {
         "catch_phrase": "Développeur web full stack"
