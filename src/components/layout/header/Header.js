@@ -1,10 +1,10 @@
-import contact from "../../assets/contact.png"
-import profile from "../../assets/profile.png"
+import contact from "../../../assets/contact.png"
+import profile from "../../../assets/profile.png"
 import React from "react";
-import Button from "../common/Button";
-import CircleButton from "../common/CircleButton";
-import DropdownMenu from "../common/DropdownMenu";
-import HeaderCategory from "../common/HeaderCategory";
+import Button from "../../common/Button";
+import CircleButton from "../../common/CircleButton";
+import DropdownMenu from "../../common/DropdownMenu";
+import HeaderCategory from "./HeaderCategory";
 
 const Header = ({ languages, currentLanguage, setLanguage }) => {
     let texts = currentLanguage.texts;
