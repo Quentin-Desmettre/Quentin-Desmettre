@@ -1,19 +1,8 @@
-const { Octokit } = require("@octokit/core");
 const { execSync } = require('child_process');
-const octokit = new Octokit({
-    auth: process.env.GITHUB_TOKEN || ''
-})
 const fs = require('fs');
 const EXTENSIONS_JSON = JSON.parse(fs.readFileSync('./assets/language_extensions.json', 'utf8'));
+const { githubRequest, fetchAllPages } = require("../octokit")
 
-const githubRequest = (route, params) => {
-    return octokit.request(route, {
-        headers: {
-            'X-GitHub-Api-Version': '2022-11-28'
-        },
-        ...params
-    })
-}
 
 const getLanguageExtensions = (language) => {
     try {
@@ -50,31 +39,6 @@ const countRepoLinesByLanguage = async (repoUrl, repoName, languages) => {
     return lines_for_language;
 }
 
-const fetchAllPages = async (route, params) => {
-    let page = 1;
-    let results = [];
-
-    while (true) {
-        let response;
-        try {
-            response = await githubRequest(route, {
-                ...params,
-                per_page: 100,
-                page: page
-            });
-        } catch (e) {
-            break;
-        }
-
-        if (!response.data.length)
-            break;
-
-        results = results.concat(response.data);
-        page++;
-    }
-    return results;
-}
-
 const mergeCounters = (obj1, obj2) => {
     for (const [key, value] of Object.entries(obj2)) {
         if (!obj1[key]) {
@@ -99,7 +63,7 @@ const getLineAndByteCount = (lines_for_language, bytes_for_language) => {
     return Object.fromEntries(Object.entries(lines_and_bytes_for_languages).sort(([, a], [, b]) => b.lines - a.lines));
 }
 
-const fetchGithubData = async (username) => {
+const fetchGithubStats = async (username) => {
     let commits = 0;
     let pull_requests = 0;
     let projects = 0;
@@ -111,10 +75,11 @@ const fetchGithubData = async (username) => {
     // Finally, return the data.
 
     // Get the user's repositories.
-    console.log("request url: " + `GET /users/${username}/repos`)
+    console.log("Fetching repositories for " + username + "...")
     const repositories = await fetchAllPages('GET /users/{username}/repos', {
         username: username
     });
+    console.log("Fetched " + repositories.length + " repositories for " + username);
     projects = repositories.length;
 
     // Use Promise.all to perform requests in parallel and wait for all to finish.
@@ -151,6 +116,7 @@ const fetchGithubData = async (username) => {
         lines_for_language = mergeCounters(lines_for_language, lines);
         bytes_for_language = mergeCounters(bytes_for_language, languagesResponse.data);
     }));
+    console.log("Finished fetching data for " + username + ".")
 
     return {
         commits: commits,
@@ -161,5 +127,5 @@ const fetchGithubData = async (username) => {
 }
 
 module.exports = {
-    fetchGithubData
+    fetchGithubStats
 }

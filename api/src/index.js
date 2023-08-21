@@ -1,51 +1,50 @@
-const express = require('express')
-const app = express()
-const { fetchGithubData } = require('./FetchGithubData');
-const fs = require('fs');
 require('dotenv').config()
 const PORT = process.env.PORT || 3000
+const express = require('express')
+const app = express()
+const { fetchData } = require('./utils/FetchData')
 
 app.listen(PORT, () => {
     console.log("Server running on port 3000");
 })
 
-const sendError = (res, error) => {
-    res.status(500).send({
+const sendError = (res, error, status=500) => {
+    res.status(status).send({
         error: error
     })
 }
 
-app.get('/', async (req, res) => {
-    const username = req.query.username
-
-    console.log(`Fetching data for ${username}`);
-    // Error handling
-    if (!username) {
-        res.status(400).send({
-            error: "Missing username"
-        })
-    }
-
+const checkUsername = (username) => {
     // TODO: Find a way to handle multiple usernames, without surcharging the server with requests
-    if (username !== 'Quentin-Desmettre') {
-        res.status(400).send({
-            error: "Invalid username"
-        })
+    if (!username || username !== 'Quentin-Desmettre') {
+        return false;
     }
+    return true;
+}
 
-    // Check if there is a username.json file. If there is, send it
-    const FILENAME = `./data/${username}.json`;
-    if (fs.existsSync(FILENAME)) {
-        console.log(`Found ${FILENAME}`);
-        res.send(JSON.parse(fs.readFileSync(FILENAME, 'utf8')));
+const checkDataType = (data_type) => {
+    if (!data_type)
+        return true;
+    if (!['stats', 'repos'].includes(data_type)) {
+        return false;
+    }
+    return true;
+}
+
+app.get('/user/:username/:data_type?', async (req, res) => {
+    const { username, data_type } = req.params;
+
+    // Error handling
+    if (!checkUsername(username) || !checkDataType(data_type)) {
+        sendError(res, "Invalid username or data type", 400);
         return;
     }
-    // Else, fetch the data
-    try {
-        const data = await fetchGithubData(username);
-        fs.writeFileSync(FILENAME, JSON.stringify(data, null, 4));
-        res.send(data);
-    } catch (error) {
+
+    // Fetch data
+    const data = await fetchData(username, data_type);
+    if (!data) {
         sendError(res, "Internal Server Error");
+        return;
     }
+    res.send(data);
 })

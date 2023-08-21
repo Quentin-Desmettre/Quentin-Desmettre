@@ -1,17 +1,18 @@
 const fs = require('fs');
 const path = require('path');
-const { fetchGithubData } = require('./src/FetchGithubData');
+require('dotenv').config();
+const { fetchData } = require('./src/utils/FetchData');
 
 const dataDirectory = path.join(__dirname, 'data');
 const files = fs.readdirSync(dataDirectory);
 
 // Go through every json file in the data folder.
 // for every file.json, run the fetchGithubData function and replace the file.json with the new data.
-files.forEach((filename) => {
+Promise.all(files.map(async (filename) => {
     if (!filename.endsWith('.json'))
         return;
     const username = filename.replace('.json', '');
-    fetchGithubData(username).then((data) => {
-        fs.writeFileSync(path.join(dataDirectory, filename), JSON.stringify(data, null, 4));
-    });
+    await fetchData(username, null, true);
+})).then(() => {
+    console.log("Done");
 });
