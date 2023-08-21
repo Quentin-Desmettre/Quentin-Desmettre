@@ -46,7 +46,7 @@ jobs:
           SSH_HOST: ${{ secrets.STAGING_SSH_HOST }}
 
       - name: Pull & build the source
-        run: ssh staging 'cd /home/ubuntu/Quentin-Desmettre/api && git checkout api && git pull && npm install'
+        run: ssh staging 'cd /home/ubuntu/Quentin-Desmettre && git checkout api && git restore . && git pull && cd api && npm install'
 
       - name: Restart the API
         run: ssh staging 'sudo systemctl restart quentin-desmettre-api'
