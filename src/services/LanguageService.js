@@ -8,7 +8,6 @@ const loadLanguages = () => {
     // for every file.json, if there is a file.png / file.jpg / file.jpeg / file.svg, add the parsed json & the image to the languages array.
     const req = require.context('../assets/languages', true, /\.json$/);
     req.keys().forEach((key) => {
-        console.log(key);
         const language = req(key); // Language is the parsed json file.
         const name = key.replace('./', '').replace('.json', '');
         const image = require(`../assets/languages/${name}.png`);

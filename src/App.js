@@ -19,12 +19,12 @@ const App = () => {
 
   return (
     <div className="bg-main-background">
-      <Header languages={languages} currentLanguage={language} setLanguage={setLanguage} />
+      <Header languages={languages} language={language} setLanguage={setLanguage} />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/projects" element={<Projects />} />
       </Routes>
-      <Footer />
+      <Footer language={language} />
     </div>
   );
 };
