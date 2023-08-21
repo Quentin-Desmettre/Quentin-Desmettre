@@ -22,6 +22,7 @@ on:
     branches-ignore:
       - $PROD_BRANCH
       - main
+      - api
 
   pull_request:
     branches:

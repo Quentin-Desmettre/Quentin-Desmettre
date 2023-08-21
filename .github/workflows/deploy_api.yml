@@ -4,9 +4,28 @@ on:
     branches:
       - api
 jobs:
+  test:
+    name: "Test API"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          ref: api
+
+      - name: Use Node.js 20.5.1
+        uses: actions/setup-node@v1
+        with:
+          node-version: 20.5.1
+
+      - name: cd into the api folder, install dependencies and run tests
+        run: cd api && npm install && npm run test
+
   deploy:
     name: "Deploy API to staging server"
     runs-on: ubuntu-latest
+    needs: test
+
     steps:
       - name: Configure SSH
         run: |
