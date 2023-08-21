@@ -1,9 +1,9 @@
 const express = require('express')
 const app = express()
-require('dotenv').config()
-const PORT = process.env.PORT || 3000
 const { fetchGithubData } = require('./FetchGithubData');
 const fs = require('fs');
+require('dotenv').config()
+const PORT = process.env.PORT || 3000
 
 app.listen(PORT, () => {
     console.log("Server running on port 3000");
@@ -26,6 +26,13 @@ app.get('/', async (req, res) => {
         })
     }
 
+    // TODO: Find a way to handle multiple usernames, without surcharging the server with requests
+    if (username !== 'Quentin-Desmettre') {
+        res.status(400).send({
+            error: "Invalid username"
+        })
+    }
+
     // Check if there is a username.json file. If there is, send it
     const FILENAME = `./data/${username}.json`;
     if (fs.existsSync(FILENAME)) {
@@ -33,21 +40,12 @@ app.get('/', async (req, res) => {
         res.send(JSON.parse(fs.readFileSync(FILENAME, 'utf8')));
         return;
     }
-    // Else, fetch the data and add a cron job to fetch the data every 30 minutes
+    // Else, fetch the data
     try {
-        console.log(`Fetching github for ${username}`);
         const data = await fetchGithubData(username);
-        console.log(`Writing to ${FILENAME}`);
         fs.writeFileSync(FILENAME, JSON.stringify(data, null, 4));
         res.send(data);
-
-        setTimeout(async () => {
-            const newData = await fetchGithubData(username);
-            fs.unlinkSync(FILENAME);
-            fs.writeFileSync(FILENAME, JSON.stringify(newData, null, 4));
-        }, 1000 * 60 * 30);
     } catch (error) {
-        console.log(error);
         sendError(res, "Internal Server Error");
     }
 })

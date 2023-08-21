@@ -1,7 +1,7 @@
 const { Octokit } = require("@octokit/core");
 const { execSync } = require('child_process');
 const octokit = new Octokit({
-    auth: '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'
+    auth: process.env.GITHUB_TOKEN || ''
 })
 const fs = require('fs');
 const EXTENSIONS_JSON = JSON.parse(fs.readFileSync('./assets/language_extensions.json', 'utf8'));
@@ -111,6 +111,7 @@ const fetchGithubData = async (username) => {
     // Finally, return the data.
 
     // Get the user's repositories.
+    console.log("request url: " + `GET /users/${username}/repos`)
     const repositories = await fetchAllPages('GET /users/{username}/repos', {
         username: username
     });
