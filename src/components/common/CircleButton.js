@@ -1,9 +1,14 @@
 
-const CircleButton = ({ image, href, className }) => {
+const CircleButton = ({ image, href, onClick, className }) => {
     return (
-        <a className={className + " rounded-full"} href={href}>
-            <img src={image} alt="icon" />
-        </a>
+        href ?
+            <a className={className + " rounded-full"} href={href} target="blank">
+                <img src={image} alt="icon" />
+            </a>
+        :
+            <button className={className + " rounded-full"} onClick={onClick}>
+                <img src={image} alt="icon" />
+            </button>
     )
 }
 
