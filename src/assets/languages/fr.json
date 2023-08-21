@@ -1,6 +1,7 @@
 {
     "name": "Français",
     "header": {
+        "home": "Accueil",
         "contact": "Contact",
         "about": "À propos",
         "hobbies": "Mes passions",
@@ -67,7 +68,7 @@
                 "location": "Lille",
                 "start_date": "06/02/2023",
                 "end_date": "N/A",
-                "description": "En tant que membre à part entière de l’équipe pédagogique d’Epitech, encadrement, accompagnement, aide pédagogique et technique aux étudiants."
+                "description": "En tant que membre à part entière de l'équipe pédagogique d'Epitech, encadrement, accompagnement, aide pédagogique et technique aux étudiants."
             }
         ]
     },
@@ -77,5 +78,18 @@
         "objet": "Objet",
         "message": "Message",
         "send": "Envoyer"
+    },
+    "footer": {
+        "email_copied": "Email copié"
+    },
+    "no_translation": {
+        "footer": {
+            "mention": "©2023 Quentin Desmettre | All rights reserved"
+        },
+        "links": {
+            "github": "https://github.com/Quentin-Desmettre/",
+            "linkedin": "https://www.linkedin.com/in/quentin-desmettre/",
+            "email": "quentin.desmettre@epitech.eu"
+        }
     }
 }
