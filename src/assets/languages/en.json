@@ -1,0 +1,95 @@
+{
+    "name": "English",
+    "header": {
+        "home": "Home",
+        "contact": "Contact",
+        "about": "About",
+        "hobbies": "My hobbies",
+        "experiences": "Experiences",
+        "projects": "Projects"
+    },
+    "first_screen": {
+        "catch_phrase": "Développeur web full stack"
+    },
+    "about_me": {
+        "title": "À propos de moi",
+        "description": "Je suis un développeur web full stack passionné par les nouvelles technologies. J'aime apprendre et découvrir de nouvelles choses. Je suis curieux et j'aime relever de nouveaux défis. Je suis à la recherche d'un stage de fin d'études de 6 mois à partir de février 2021.",
+        "cv_link": "Télécharger mon CV"
+    },
+    "hobbies": {
+        "title": "Mes passions",
+        "hobbies": [
+            {
+                "title": "Sports",
+                "image": "sports.png",
+                "description": "Je pratique le football depuis l'âge de 6 ans. J'ai joué en club pendant 10 ans et je continue à jouer avec des amis. J'aime aussi regarder des matchs de football à la télévision."
+            },
+            {
+                "title": "Informatique",
+                "image": "computer.png",
+                "description": "J'aime passer du temps sur mon ordinateur. Je joue à des jeux vidéo et je regarde des vidéos sur YouTube. J'aime aussi apprendre de nouvelles choses sur l'informatique."
+            },
+            {
+                "title": "Echecs",
+                "image": "chess.png",
+                "description": "Je joue aux échecs depuis l'âge de 6 ans. J'ai participé à des tournois et j'ai gagné quelques prix. J'aime jouer aux échecs avec des amis."
+            }
+        ]
+    },
+    "statistics": {
+        "title": "Statistiques",
+        "lines_of_code": "lignes de code",
+        "commits": "commits",
+        "pull_requests": "pull-requests",
+        "projects": "projets",
+        "languages": "langages",
+        "most_used_languages": "Langages les plus utilisés"
+    },
+    "featured_projects": {
+        "title": "Projets à la une",
+        "all_projects": "Voir tous les projets"
+    },
+    "experiences": {
+        "title": "Expériences profesionelles",
+        "experiences": [
+            {
+                "title": "Développeur Full Stack",
+                "company": "S Com System",
+                "logo": "scomsystem.png",
+                "location": "Roubaix",
+                "start_date": "04/07/2022",
+                "end_date": "23/12/2022",
+                "description": "Développement complet de logiciels web de gestion.\nGestion des relations clients.\nMise en production et intégration continue."
+            },
+            {
+                "title": "Assistant pédagogique",
+                "company": "Epitech",
+                "logo": "epitech.png",
+                "location": "Lille",
+                "start_date": "06/02/2023",
+                "end_date": "N/A",
+                "description": "En tant que membre à part entière de l'équipe pédagogique d'Epitech, encadrement, accompagnement, aide pédagogique et technique aux étudiants."
+            }
+        ]
+    },
+    "contact": {
+        "title": "Contact",
+        "email": "Email",
+        "objet": "Objet",
+        "message": "Message",
+        "send": "Envoyer"
+    },
+    "footer": {
+        "email_copied": "Email copié"
+    },
+    "no_translation": {
+        "footer": {
+            "mention": "©2023 Quentin Desmettre | All rights reserved"
+        },
+        "links": {
+            "github": "https://github.com/Quentin-Desmettre/",
+            "linkedin": "https://www.linkedin.com/in/quentin-desmettre/",
+            "email": "quentin.desmettre@epitech.eu"
+        }
+    }
+}
