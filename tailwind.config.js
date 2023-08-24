@@ -13,8 +13,14 @@ module.exports = {
         "button-background": "#238636",
         "light-background": "#161B22",
         "light-light-background": "#21262D",
+        "main-stroke": "#272E37",
         "footer-text": "#D5D4CA",
-        "green": "#238636"
+        "green-button": "#238636",
+        "purple": "#733EC7",
+        "blue": "#2876DE",
+        "green-text": "#72B01D",
+        "brown": "#FFA28B",
+        "grey": "#747473"
       }
     },
   },

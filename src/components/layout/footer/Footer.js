@@ -34,7 +34,7 @@ const Footer = ({ language }) => {
     }
     return (
         <div className="flex flex-col items-center relative">
-            <div className="inline-block w-2/5 min-w-[1em] h-px bg-neutral-100 my-6"></div>
+            <div className="inline-block w-2/5 min-w-[1em] h-px bg-light-light-background my-6"></div>
             <ElementRow className="space-x-9 mb-4">
                 <CircleButton image={linkedin} href={no_translation.links.linkedin} />
                 <CircleButton image={github} href={no_translation.links.github} />
@@ -42,9 +42,9 @@ const Footer = ({ language }) => {
             </ElementRow>
 
             {emailCopied &&
-                <text className="bg-green py-2 px-3 rounded-xl text-footer-text text-sm font-bold absolute right-10 bottom-10 ">
+                <span className="bg-green-button py-2 px-3 rounded-xl text-footer-text text-sm font-bold absolute right-10 bottom-10 ">
                     {texts.footer.email_copied}
-                </text>
+                </span>
             }
 
             <ElementRow className="space-x-10 mt-3">
@@ -55,9 +55,9 @@ const Footer = ({ language }) => {
                 <FooterLink href="">{texts.header.contact}</FooterLink>
             </ElementRow>
 
-            <text className="my-6 text-footer-text text-sm">
+            <span className="my-6 text-footer-text text-sm">
                 {no_translation.footer.mention}
-            </text>
+            </span>
 
 
         </div>

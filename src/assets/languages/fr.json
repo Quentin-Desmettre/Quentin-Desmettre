@@ -75,9 +75,19 @@
     "contact": {
         "title": "Contact",
         "email": "Email",
-        "objet": "Objet",
+        "email_placeholder": "mail@example.com",
+        "object": "Objet",
+        "object_placeholder": "Objet de votre message",
         "message": "Message",
-        "send": "Envoyer"
+        "send": "Envoyer",
+        "success": "Message envoyé avec succès",
+        "error": "Une erreur est survenue",
+        "errors": {
+            "invalid_email": "Email invalide",
+            "empty_object": "Objet vide",
+            "empty_message": "Message vide",
+            "too_long_message": "Message trop long"
+        }
     },
     "footer": {
         "email_copied": "Email copié"

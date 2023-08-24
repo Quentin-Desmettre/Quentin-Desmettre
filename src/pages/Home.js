@@ -1,10 +1,10 @@
+import Contact from "../components/layout/contact/Contact"
 import "../index.css"
 
-const Home = () => {
+const Home = ({ language }) => {
     return (
         <div className="text-3xl">
-            <h1 className="font-bold">Home</h1>
-            <a href="/projects">Go to projects</a>
+            <Contact language={language}/>
         </div>
     )
 }
