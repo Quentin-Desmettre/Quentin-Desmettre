@@ -24,6 +24,7 @@ module.exports = {
       },
       boxShadow: {
         'purple': '0px 0px 20px 12px rgba(115, 62, 199, 1);',
+        'blue': '0px 0px 20px 12px rgba(40, 118, 222, 1);',
       },
     },
   },

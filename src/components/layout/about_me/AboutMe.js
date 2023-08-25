@@ -3,13 +3,13 @@ import InfoImage from '../../../assets/info.png'
 import Title from '../../common/Title'
 import MyFace from '../../../assets/my_face.png'
 import Download from '../../../assets/download.png'
-import { firstNWords } from '../../../utils/Strings'
+import { extractFirstNWords } from '../../../utils/Strings'
 import HoverableTextLink from '../../common/HoverableTextLink'
+import Box from '../../common/Box'
 
 const AboutMe = ({ language }) => {
     const texts = language.texts.about_me;
-    const firstTwoWords = firstNWords(texts.description, 2)
-    const restOfTheText = texts.description.replace(firstTwoWords, '')
+    const [firstTwoWords, restOfTheText] = extractFirstNWords(texts.description, 2)
 
     return (
         <>
