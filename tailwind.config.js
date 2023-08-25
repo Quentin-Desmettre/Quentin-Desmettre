@@ -20,8 +20,11 @@ module.exports = {
         "blue": "#2876DE",
         "green-text": "#72B01D",
         "brown": "#FFA28B",
-        "grey": "#747473"
-      }
+        "grey": "#747473",
+      },
+      boxShadow: {
+        'purple': '0px 0px 20px 12px rgba(115, 62, 199, 1);',
+      },
     },
   },
   plugins: [],

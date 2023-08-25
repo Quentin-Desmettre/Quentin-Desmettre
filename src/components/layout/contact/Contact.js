@@ -81,7 +81,7 @@ const Contact = ({ language }) => {
     return (
         <div className="flex flex-col items-center justify-center">
             <h1 className="text-4xl font-bold text-white m-6">{contact.title}</h1>
-            <div className="flex flex-col text-sm bg-light-background w-4/12 rounded px-5 py-5 outline-main-stroke outline outline-1 items-end">
+            <div className="flex flex-col text-sm bg-light-background w-5/12 rounded px-5 py-5 outline-main-stroke outline outline-1 items-end">
                 <div className='w-full'>
                     <ContactInput label={contact.email} placeholder={contact.email_placeholder} value={message.email} onChange={(event) => {
                         changeField("email", event.target.value);
