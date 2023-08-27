@@ -1,5 +1,5 @@
 const ElementRow = ({ children, className }) => (
-    <div className={className + " flex flex-row justify-evenly items-center"}>
+    <div className={className + " flex flex-row justify-between items-center"}>
         {children}
     </div>
 )

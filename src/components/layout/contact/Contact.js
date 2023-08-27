@@ -2,6 +2,7 @@ import React from 'react'
 import Button from '../../common/Button'
 import Send from '../../../assets/send.png'
 import { useState } from 'react';
+import Box from '../../common/Box';
 export const validEmail = new RegExp(
     '^[a-zA-Z0-9._:$!%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]$'
 );
@@ -48,11 +49,11 @@ const Contact = ({ language }) => {
     }
 
     const getFormErrorMessage = () => {
-        if (message.email.length == 0 || !validEmail.test(message.email))
+        if (message.email.length === 0 || !validEmail.test(message.email))
             return contact.errors.invalid_email;
-        if (message.object.length == 0)
+        if (message.object.length === 0)
             return contact.errors.empty_object;
-        if (message.message.length == 0)
+        if (message.message.length === 0)
             return contact.errors.empty_message;
         if (message.message.length > maxMEssageLength)
             return contact.errors.too_long_message;
@@ -81,11 +82,11 @@ const Contact = ({ language }) => {
     return (
         <div className="flex flex-col items-center justify-center">
             <h1 className="text-4xl font-bold text-white m-6">{contact.title}</h1>
-            <div className="flex flex-col text-sm bg-light-background w-5/12 rounded px-5 py-5 outline-main-stroke outline outline-1 items-end">
+            <Box className="flex flex-col text-sm w-5/12 px-5 py-5 items-end">
                 <div className='w-full'>
                     <ContactInput label={contact.email} placeholder={contact.email_placeholder} value={message.email} onChange={(event) => {
                         changeField("email", event.target.value);
-                    }} isValid={message.email.length == 0 || validEmail.test(message.email)}/>
+                    }} isValid={message.email.length === 0 || validEmail.test(message.email)}/>
 
                     <ContactInput label={contact.object} placeholder={contact.object_placeholder} value={message.object} onChange={(event) => {
                         changeField("object", event.target.value);
@@ -110,7 +111,7 @@ const Contact = ({ language }) => {
                         </Button>
                     </div>
                 </div>
-            </div>
+            </Box>
 
         </div>
     )

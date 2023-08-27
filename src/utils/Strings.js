@@ -8,7 +8,14 @@ const extractFirstNWords = (str, n) => {
     return [firstN, restOfTheText]
 }
 
+const formatValue = (value) => {
+    // 1356789 => 1,356,789
+
+    return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
 export {
     firstNWords,
-    extractFirstNWords
+    extractFirstNWords,
+    formatValue
 }

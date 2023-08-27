@@ -1,6 +1,7 @@
 import Contact from "../components/layout/contact/Contact"
 import AboutMe from "../components/layout/about_me/AboutMe"
 import Hobbies from "../components/layout/hobbies/Hobbies"
+import Stats from "../components/layout/stats/Stats"
 import "../index.css"
 
 const Home = ({ language }) => {
@@ -9,6 +10,7 @@ const Home = ({ language }) => {
             <div className="w-9/12">
                 <AboutMe language={language} />
                 <Hobbies language={language} />
+                <Stats language={language} />
                 <Contact language={language} />
             </div>
         </div>
