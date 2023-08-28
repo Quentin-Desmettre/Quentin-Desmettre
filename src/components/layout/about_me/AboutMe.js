@@ -23,11 +23,11 @@ const AboutMe = ({ language }) => {
                         </span>
                     </div>
 
-                    <a href="www.google.com" target='blank' className='mb-10 font-bold flex items-center content-start'>
+                    <a href="www.google.com" target='blank' className='mb-10 font-bold flex items-center'>
                         <div className="p-2 bg-purple rounded-lg mr-3 w-10 h-10 flex items-center justify-center">
                             <img src={Download} alt="Download" className="w-full" />
                         </div>
-                        <HoverableTextLink className="text-blue" underlineColor={"bg-blue"}>
+                        <HoverableTextLink className="text-purple" underlineColor={"bg-purple"}>
                             {texts.cv_link}
                         </HoverableTextLink>
                     </a>

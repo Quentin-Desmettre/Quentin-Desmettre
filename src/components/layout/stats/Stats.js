@@ -9,6 +9,7 @@ import languageColors from "../../../utils/languages_colors"
 import widthForPercent from "../../../utils/width_for_percent"
 import { fetchStats, defaultStatistics } from "../../../utils/fetchGithubData"
 import useMount from "../../../utils/useMount"
+import FeaturedProjects from "./FeaturedProjects"
 
 const Statistic = ({ title, value }) => {
 
@@ -61,6 +62,7 @@ const displayStats = (data, setStatistics) => {
     }
     const interval = setInterval(() => {
         currentStats = {
+            repos: data.repos,
             lines_of_code: increaseValue("lines_of_code"),
             commits: increaseValue("commits"),
             pull_requests: increaseValue("pull_requests"),
@@ -118,6 +120,7 @@ const Stats = ({ language }) => {
                     })}
                 </ElementRow>
             </div>
+            <FeaturedProjects language={language} projects={statistics.repos}/>
         </>
     )
 }
