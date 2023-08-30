@@ -66,6 +66,96 @@
                 "start_date": "06/02/2023",
                 "end_date": "N/A",
                 "description": "En tant que membre à part entière de l'équipe pédagogique d'Epitech, encadrement, accompagnement, aide pédagogique et technique aux étudiants."
+            },
+            {
+                "title": "Développeur Full Stack",
+                "company": "S Com System",
+                "logo": "scomsystem.png",
+                "location": "Roubaix",
+                "start_date": "04/07/2022",
+                "end_date": "23/12/2022",
+                "description": "Développement complet de logiciels web de gestion.\nGestion des relations clients.\nMise en production et intégration continue."
+            },
+            {
+                "title": "Assistant pédagogique",
+                "company": "Epitech",
+                "logo": "epitech.png",
+                "location": "Lille",
+                "start_date": "06/02/2023",
+                "end_date": "N/A",
+                "description": "En tant que membre à part entière de l'équipe pédagogique d'Epitech, encadrement, accompagnement, aide pédagogique et technique aux étudiants."
+            },
+            {
+                "title": "Développeur Full Stack",
+                "company": "S Com System",
+                "logo": "scomsystem.png",
+                "location": "Roubaix",
+                "start_date": "04/07/2022",
+                "end_date": "23/12/2022",
+                "description": "Développement complet de logiciels web de gestion.\nGestion des relations clients.\nMise en production et intégration continue."
+            },
+            {
+                "title": "Développeur Full Stack",
+                "company": "S Com System",
+                "logo": "scomsystem.png",
+                "location": "Roubaix",
+                "start_date": "04/07/2022",
+                "end_date": "23/12/2022",
+                "description": "Développement complet de logiciels web de gestion.\nGestion des relations clients.\nMise en production et intégration continue."
+            },
+            {
+                "title": "Développeur Full Stack",
+                "company": "S Com System",
+                "logo": "scomsystem.png",
+                "location": "Roubaix",
+                "start_date": "04/07/2022",
+                "end_date": "23/12/2022",
+                "description": "Développement complet de logiciels web de gestion.\nGestion des relations clients.\nMise en production et intégration continue."
+            },
+            {
+                "title": "Développeur Full Stack",
+                "company": "S Com System",
+                "logo": "scomsystem.png",
+                "location": "Roubaix",
+                "start_date": "04/07/2022",
+                "end_date": "23/12/2022",
+                "description": "Développement complet de logiciels web de gestion.\nGestion des relations clients.\nMise en production et intégration continue."
+            },
+            {
+                "title": "Développeur Full Stack",
+                "company": "S Com System",
+                "logo": "scomsystem.png",
+                "location": "Roubaix",
+                "start_date": "04/07/2022",
+                "end_date": "23/12/2022",
+                "description": "Développement complet de logiciels web de gestion.\nGestion des relations clients.\nMise en production et intégration continue."
+            },
+            {
+                "title": "Développeur Full Stack",
+                "company": "S Com System",
+                "logo": "scomsystem.png",
+                "location": "Roubaix",
+                "start_date": "04/07/2022",
+                "end_date": "23/12/2022",
+                "description": "Développement complet de logiciels web de gestion.\nGestion des relations clients.\nMise en production et intégration continue."
+            },
+            {
+                "title": "Développeur Full Stack",
+                "company": "S Com System",
+                "logo": "scomsystem.png",
+                "location": "Roubaix",
+                "start_date": "04/07/2022",
+                "end_date": "23/12/2022",
+                "description": "Développement complet de logiciels web de gestion.\nGestion des relations clients.\nMise en production et intégration continue."
+            },
+            {
+                "title": "Développeur Full Stack",
+                "company": "S Com System",
+                "logo": "scomsystem.png",
+                "location": "Roubaix",
+                "start_date": "04/07/2022",
+                "end_date": "23/12/2022",
+                "description": "Développement complet de logiciels web de gestion.\nGestion des relations clients.\nMise en production et intégration continue."
             }
         ]
     },
@@ -98,5 +188,19 @@
             "linkedin": "https://www.linkedin.com/in/quentin-desmettre/",
             "email": "quentin.desmettre@epitech.eu"
         }
-    }
+    },
+    "months": [
+        "Jan.",
+        "Fév.",
+        "Mars",
+        "Avr.",
+        "Mai",
+        "Juin",
+        "Juil.",
+        "Août",
+        "Sept.",
+        "Oct.",
+        "Nov.",
+        "Déc."
+    ]
 }
