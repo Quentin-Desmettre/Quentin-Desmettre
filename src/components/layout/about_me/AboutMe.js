@@ -1,5 +1,5 @@
 import React from 'react'
-import InfoImage from '../../../assets/info.png'
+import InfoImage from '../../../assets/titles/info.png'
 import Title from '../../common/Title'
 import MyFace from '../../../assets/my_face.png'
 import Download from '../../../assets/download.png'
@@ -13,7 +13,7 @@ const AboutMe = ({ language }) => {
 
     return (
         <>
-            <Title title={texts.title} image={InfoImage} shadowColor="purple" />
+            <Title title={texts.title} image={InfoImage} shadow="shadow-purple" />
             <Box className="flex px-8 py-4">
                 <div className='flex flex-col ml-6'>
                     <div className="h-5/6 flex items-center">

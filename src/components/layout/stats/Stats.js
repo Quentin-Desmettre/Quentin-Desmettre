@@ -1,6 +1,6 @@
 import Title from "../../common/Title"
 import { formatValue } from "../../../utils/Strings"
-import StatsIcon from "../../../assets/stats.png"
+import StatsIcon from "../../../assets/titles/stats.png"
 import ElementRow from "../../common/ElementRow"
 import Box from "../../common/Box"
 import React from "react"
@@ -99,7 +99,7 @@ const Stats = ({ language }) => {
     useMount(sectionRef, tryFetchStats);
     return (
         <>
-            <Title title={texts.title} image={StatsIcon} />
+            <Title title={texts.title} image={StatsIcon} shadow="shadow-green" />
             <div ref={sectionRef}>
                 <ElementRow className="ml-44 mr-28">
                     <Statistic title={texts.lines_of_code} value={statistics.lines_of_code} />
@@ -120,7 +120,7 @@ const Stats = ({ language }) => {
                     })}
                 </ElementRow>
             </div>
-            <FeaturedProjects language={language} projects={statistics.repos}/>
+            <FeaturedProjects language={language} projects={statistics.repos} />
         </>
     )
 }

@@ -1,17 +1,8 @@
 import Title from "../../common/Title"
-import ExperienceIcon from "../../../assets/experiences.png"
+import ExperienceIcon from "../../../assets/titles/experiences.png"
 import Box from "../../common/Box";
 import { getOpacity } from "../../../utils/colors";
-
-const convertToMonthYear = (date, months) => {
-    if (date === "N/A")
-        return "Aujourd'hui"
-
-    const [day, month, year] = date.split('/').map(Number);
-    const monthName = months[month - 1];
-
-    return `${monthName} ${year}`;
-}
+import { convertToMonthYear } from "../../../utils/Strings";
 
 const Experience = ({ experience, months }) => {
     const { title, company, logo, location, start_date, end_date, description } = experience;
@@ -99,7 +90,7 @@ const Experiences = ({ language }) => {
 
     return (
         <>
-            <Title title={texts.title} image={ExperienceIcon} shadowColor="blue" />
+            <Title title={texts.title} image={ExperienceIcon} shadow="shadow-brown" />
             <ExperienceList experiences={texts.experiences} months={language.texts.months} />
         </>
     )

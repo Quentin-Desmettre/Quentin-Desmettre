@@ -14,8 +14,19 @@ const formatValue = (value) => {
     return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
+const convertToMonthYear = (date, months) => {
+    if (date === "N/A")
+        return "Aujourd'hui"
+
+    const [day, month, year] = date.split('/').map(Number);
+    const monthName = months[month - 1];
+
+    return `${monthName} ${year}`;
+}
+
 export {
     firstNWords,
     extractFirstNWords,
-    formatValue
+    formatValue,
+    convertToMonthYear,
 }

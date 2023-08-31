@@ -1,5 +1,5 @@
 import React from 'react'
-import HobbiesImage from '../../../assets/passions.png'
+import HobbiesImage from '../../../assets/titles/passions.png'
 import Title from '../../common/Title'
 import Box from '../../common/Box'
 import Bike from '../../../assets/bike.png'
@@ -55,7 +55,7 @@ const Hobbies = ({ language }) => {
 
     return (
         <>
-            <Title title={texts.title} image={HobbiesImage} shadowColor="blue" />
+            <Title title={texts.title} image={HobbiesImage} shadow="shadow-blue" />
             <div className='flex justify-between space-x-5 group'>
                 {hobbies.map((hobby, index) => (
                     <div className="w-1/3" key={index}
