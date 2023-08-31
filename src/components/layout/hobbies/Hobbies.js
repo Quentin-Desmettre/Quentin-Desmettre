@@ -55,7 +55,7 @@ const Hobbies = ({ language }) => {
 
     return (
         <>
-            <Title title={texts.title} image={HobbiesImage} shadow="shadow-blue" />
+            <Title title={texts.title} image={HobbiesImage} color="blue" />
             <div className='flex justify-between space-x-5 group'>
                 {hobbies.map((hobby, index) => (
                     <div className="w-1/3" key={index}

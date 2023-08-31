@@ -16,10 +16,8 @@ const defaultStatistics = {
 const fetchStats = async (nbMostUsedLanguages, sortByLines = true) => {
     const response = await fetch('http://54.36.183.139:3000/user/Quentin-Desmettre');
 
-    if (!response.ok) {
-        console.log(response);
+    if (!response.ok)
         return null;
-    }
 
     const whole_data = await response.json();
     const data = whole_data.stats;

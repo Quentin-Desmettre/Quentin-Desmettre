@@ -10,6 +10,7 @@ import widthForPercent from "../../../utils/width_for_percent"
 import { fetchStats, defaultStatistics } from "../../../utils/fetchGithubData"
 import useMount from "../../../utils/useMount"
 import FeaturedProjects from "./FeaturedProjects"
+import StatBranch from "../../../assets/stat_branch.svg"
 
 const Statistic = ({ title, value }) => {
 
@@ -99,27 +100,31 @@ const Stats = ({ language }) => {
     useMount(sectionRef, tryFetchStats);
     return (
         <>
-            <Title title={texts.title} image={StatsIcon} shadow="shadow-green" />
-            <div ref={sectionRef}>
-                <ElementRow className="ml-44 mr-28">
-                    <Statistic title={texts.lines_of_code} value={statistics.lines_of_code} />
-                    <Statistic title={texts.commits} value={statistics.commits} />
-                    <Statistic title={texts.pull_requests} value={statistics.pull_requests} />
-                    <Statistic title={texts.projects} value={statistics.projects} />
-                    <Statistic title={texts.languages} value={statistics.nb_languages} />
-                </ElementRow>
-                <span className="text-white ml-44 text-lg font-bold">
-                    {texts.most_used_languages}
-                </span>
-                <ElementRow className="ml-44 space-x-12 w-1">
-                    {statistics.most_used_languages.map((language, index) => {
-                        let color = languageColors[language.name]?.color;
-                        if (color === undefined)
-                            color = 'bg-grey';
-                        return <ProgressBar key={index} title={language.name} value={language.use_percent} color={color} />
-                    })}
-                </ElementRow>
-            </div>
+            <Title title={texts.title} image={StatsIcon} color="green"
+            withLeftBar={<img src={StatBranch} alt="Branch" className="absolute left-3 top-16" />}>
+                <div ref={sectionRef} className="ml-12 mb-16 mt-5">
+                    <ElementRow className="mr-28 mb-12 w-9/12">
+                        <Statistic title={texts.lines_of_code} value={statistics.lines_of_code} />
+                        <Statistic title={texts.commits} value={statistics.commits} />
+                        <Statistic title={texts.pull_requests} value={statistics.pull_requests} />
+                        <Statistic title={texts.projects} value={statistics.projects} />
+                        <Statistic title={texts.languages} value={statistics.nb_languages} />
+                    </ElementRow>
+                    <div className="relative ml-8">
+                        <span className="text-white text-lg font-bold">
+                            {texts.most_used_languages}
+                        </span>
+                        <ElementRow className="space-x-12 w-1">
+                            {statistics.most_used_languages.map((language, index) => {
+                                let color = languageColors[language.name]?.color;
+                                if (color === undefined)
+                                    color = 'bg-grey';
+                                return <ProgressBar key={index} title={language.name} value={language.use_percent} color={color} />
+                            })}
+                        </ElementRow>
+                    </div>
+                </div>
+            </Title>
             <FeaturedProjects language={language} projects={statistics.repos} />
         </>
     )

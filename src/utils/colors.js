@@ -28,6 +28,7 @@ const getContrast = (hexA, hexB) => {
 }
 
 const opacities = [
+    "opacity-0",
     "opacity-[.01]",
     "opacity-[.02]",
     "opacity-[.03]",
@@ -130,12 +131,30 @@ const opacities = [
     "opacity-[1.00]"
 ]
 
+const boxShadow = {
+    "purple": "shadow-purple",
+    "blue": "shadow-blue",
+    "green": "shadow-green",
+    "brown": "shadow-brown"
+}
+
+const fromColor = {
+    "purple": "from-purple",
+    "blue": "from-blue",
+    "green": "from-green-text",
+    "brown": "from-brown"
+}
+
 const getOpacity = (float) => {
+    if (float <= 0)
+        return opacities[0];
     return opacities[Math.round(float * 100) - 1];
 }
 
 export {
     getContrast,
     opacities,
-    getOpacity
+    getOpacity,
+    boxShadow,
+    fromColor
 }
