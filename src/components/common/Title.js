@@ -25,19 +25,8 @@ const Title = ({ title, image, color, topBorder = true, children, withLeftBar })
                 </div>
                 {withLeftBar}
             </div>
-
         </div>
-        // <div className="flex items-center text-white space-x-12 ml-4">
-        //     <div className="flex flex-col items-center">
-        //         <span className={`mb-6 w-[3px] h-[41px] ${topBorder ? "bg-gradient-to-t" : ""} ${fromColor[color]} to-main-background`} />
-        //         <img src={image} alt={title} className={`w-[30px] h-[30px] rounded-full ${boxShadow[color]}`} />
-        //         <span className={`mt-6 w-[3px] h-[41px] bg-gradient-to-b ${fromColor[color]} to-main-background`} />
-        //     </div>
-        //     <h1 className="text-4xl font-bold">
-        //         {title}
-        //     </h1>
-        // </div>
-    )
+)
 }
 
 export default Title

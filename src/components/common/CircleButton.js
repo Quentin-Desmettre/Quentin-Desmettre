@@ -2,7 +2,7 @@
 const CircleButton = ({ image, href, onClick, className }) => {
     return (
         href ?
-            <a className={className + " rounded-full"} href={href} target="blank">
+            <a className={className + " rounded-full"} href={href}>
                 <img src={image} alt="icon" />
             </a>
         :

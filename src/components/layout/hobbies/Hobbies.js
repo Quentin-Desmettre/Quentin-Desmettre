@@ -28,7 +28,7 @@ const Hobby = ({ image, title, className, text }) => {
     )
 }
 
-const Hobbies = ({ language }) => {
+const Hobbies = ({ language, destRef }) => {
     const texts = language.texts.hobbies;
     const hobbies = texts.hobbies;
     const images = [
@@ -54,7 +54,7 @@ const Hobbies = ({ language }) => {
     };
 
     return (
-        <>
+        <div ref={destRef}>
             <Title title={texts.title} image={HobbiesImage} color="blue" />
             <div className='flex justify-between space-x-5 group'>
                 {hobbies.map((hobby, index) => (
@@ -65,7 +65,7 @@ const Hobbies = ({ language }) => {
                     </div>
                 ))}
             </div>
-        </>
+        </div>
     )
 }
 

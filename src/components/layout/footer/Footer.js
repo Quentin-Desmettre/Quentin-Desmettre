@@ -7,10 +7,11 @@ import HoverableTextLink from '../../common/HoverableTextLink';
 import React from 'react';
 import { useState } from 'react';
 
-const FooterLink = ({ children, href, className }) => {
+const FooterLink = ({ children, href, className, destRef }) => {
     return (
         <HoverableTextLink className={className + " text-footer-text text-sm"}
             href={href}
+            destRef={destRef}
             underlineColor={"bg-footer-text"}
             animation={false}
         >
@@ -19,7 +20,7 @@ const FooterLink = ({ children, href, className }) => {
     )
 }
 
-const Footer = ({ language }) => {
+const Footer = ({ language, sectionsRefs }) => {
     const texts = language.texts;
     const no_translation = language.texts.no_translation;
 
@@ -48,11 +49,11 @@ const Footer = ({ language }) => {
             }
 
             <ElementRow className="space-x-10 mt-3">
-                <FooterLink href="">{texts.header.home}</FooterLink>
-                <FooterLink href="">{texts.header.about}</FooterLink>
-                <FooterLink href="">{texts.header.experiences}</FooterLink>
-                <FooterLink href="">{texts.header.projects}</FooterLink>
-                <FooterLink href="">{texts.header.contact}</FooterLink>
+                <FooterLink destRef={sectionsRefs.header}>{texts.header.home}</FooterLink>
+                <FooterLink destRef={sectionsRefs.about_me}>{texts.header.about}</FooterLink>
+                <FooterLink destRef={sectionsRefs.experiences}>{texts.header.experiences}</FooterLink>
+                <FooterLink href='/projects'>{texts.header.projects}</FooterLink>
+                <FooterLink destRef={sectionsRefs.contact}>{texts.header.contact}</FooterLink>
             </ElementRow>
 
             <span className="my-6 text-footer-text text-sm">

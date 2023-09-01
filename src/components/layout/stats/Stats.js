@@ -99,7 +99,7 @@ const Stats = ({ language }) => {
     const sectionRef = useRef();
     useMount(sectionRef, tryFetchStats);
     return (
-        <>
+        <div>
             <Title title={texts.title} image={StatsIcon} color="green"
             withLeftBar={<img src={StatBranch} alt="Branch" className="absolute left-3 top-16" />}>
                 <div ref={sectionRef} className="ml-12 mb-16 mt-5">
@@ -126,7 +126,7 @@ const Stats = ({ language }) => {
                 </div>
             </Title>
             <FeaturedProjects language={language} projects={statistics.repos} />
-        </>
+        </div>
     )
 }
 

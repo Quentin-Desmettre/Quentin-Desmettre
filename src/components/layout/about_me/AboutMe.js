@@ -7,12 +7,12 @@ import { extractFirstNWords } from '../../../utils/Strings'
 import HoverableTextLink from '../../common/HoverableTextLink'
 import Box from '../../common/Box'
 
-const AboutMe = ({ language }) => {
+const AboutMe = ({ language, destRef }) => {
     const texts = language.texts.about_me;
     const [firstTwoWords, restOfTheText] = extractFirstNWords(texts.description, 2)
 
     return (
-        <>
+        <div ref={destRef}>
             <Title title={texts.title} image={InfoImage} color="purple" topBorder={false} />
             <Box className="flex px-8 py-4">
                 <div className='flex flex-col ml-6'>
@@ -34,7 +34,7 @@ const AboutMe = ({ language }) => {
                 </div>
                 <img src={MyFace} alt="My face" className="rounded-2xl w-60" />
             </Box>
-        </>
+        </div>
     )
 }
 

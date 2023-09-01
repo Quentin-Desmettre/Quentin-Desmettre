@@ -88,18 +88,18 @@ const ExperienceList = ({ experiences, months }) => {
     )
 }
 
-const Experiences = ({ language }) => {
+const Experiences = ({ language, destRef }) => {
     const texts = language.texts.experiences;
 
     return (
-        <>
+        <div ref={destRef}>
             <Title title={texts.title} image={ExperienceIcon} color="brown"
             withLeftBar={<img src={ExpBranch} alt="Branch" className="absolute left-3 top-1" />}>
                 <div className="space-y-16 ml-16 mt-5">
                     <ExperienceList experiences={texts.experiences} months={language.texts.months} />
                 </div>
             </Title>
-        </>
+        </div>
     )
 }
 

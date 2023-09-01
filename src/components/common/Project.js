@@ -52,7 +52,7 @@ const Project = ({ name, description, url, created_at, updated_at, tags, links, 
 
     return (
         <div className="w-[32%]" key={url}>
-            <Box className="flex flex-col px-5 py-3 bg-main-background w-full">
+            <Box className="flex flex-col px-5 py-3 bg-main-background w-full h-full">
                 <div className="flex justify-between">
                     <HoverableTextLink className={"text-left text-xl w-fit truncate mr-8 " + name_color}
                         underlineColor={underline_color} href={url} target="blank" animation={false}>
