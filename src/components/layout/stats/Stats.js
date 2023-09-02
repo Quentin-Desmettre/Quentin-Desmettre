@@ -11,6 +11,7 @@ import { fetchStats, defaultStatistics } from "../../../utils/fetchGithubData"
 import useMount from "../../../utils/useMount"
 import FeaturedProjects from "./FeaturedProjects"
 import StatBranch from "../../../assets/stat_branch.svg"
+import useScrollDirection from "../../../utils/useScrollDirection"
 
 const Statistic = ({ title, value }) => {
 
@@ -85,6 +86,7 @@ const displayStats = (data, setStatistics) => {
 const Stats = ({ language }) => {
     const texts = language.texts.statistics;
     const [statistics, setStatistics] = useState(defaultStatistics);
+    const scrollDirection = useScrollDirection();
 
     const tryFetchStats = async () => {
         if (statistics.lines_of_code !== 0)
@@ -93,15 +95,19 @@ const Stats = ({ language }) => {
         let data = await fetchStats(3, true);
         if (data === null)
             return;
-        displayStats(data, setStatistics)
+        console.log(scrollDirection)
+        if (scrollDirection === "up")
+            setStatistics(data)
+        else
+            displayStats(data, setStatistics)
     }
 
     const sectionRef = useRef();
-    useMount(sectionRef, tryFetchStats);
+    useMount(sectionRef, tryFetchStats, () => { setStatistics({ ...defaultStatistics, repos: statistics.repos }) });
     return (
         <div>
             <Title title={texts.title} image={StatsIcon} color="green"
-            withLeftBar={<img src={StatBranch} alt="Branch" className="absolute left-3 top-16" />}>
+                withLeftBar={<img src={StatBranch} alt="Branch" className="absolute left-3 top-16" />}>
                 <div ref={sectionRef} className="ml-12 mb-16 mt-5">
                     <ElementRow className="mr-28 mb-12 w-9/12">
                         <Statistic title={texts.lines_of_code} value={statistics.lines_of_code} />
