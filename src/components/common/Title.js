@@ -1,6 +1,4 @@
 import { boxShadow, fromColor } from "../../utils/colors"
-import ExpBranch from "../../assets/exp_branch.svg";
-
 
 const Title = ({ title, image, color, topBorder = true, children, withLeftBar }) => {
     return (

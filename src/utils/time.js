@@ -11,7 +11,7 @@ const convertToMonthYear = (date, months) => {
     if (date === "N/A")
         return "Aujourd'hui"
 
-    const [day, month, year] = date.split('/').map(Number);
+    const [, month, year] = date.split('/').map(Number);
     const monthName = months[month - 1];
 
     return `${monthName} ${year}`;
