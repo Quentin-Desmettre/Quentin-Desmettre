@@ -6,6 +6,8 @@ import Download from '../../../assets/download.png'
 import { extractFirstNWords } from '../../../utils/Strings'
 import HoverableTextLink from '../../common/HoverableTextLink'
 import Box from '../../common/Box'
+import CV from '../../../assets/cv.pdf'
+import { downloadTxtFile } from '../../../utils/files'
 
 const AboutMe = ({ language, destRef }) => {
     const texts = language.texts.about_me;
@@ -23,14 +25,14 @@ const AboutMe = ({ language, destRef }) => {
                         </span>
                     </div>
 
-                    <a href="www.google.com" target='blank' className='mb-10 font-bold flex items-center'>
+                    <button onClick={() => {downloadTxtFile(CV, "CV Quentin Desmettre.pdf")}} className='w-fit mb-10 font-bold flex items-center'>
                         <div className="p-2 bg-purple rounded-lg mr-3 w-10 h-10 flex items-center justify-center">
                             <img src={Download} alt="Download" className="w-full" />
                         </div>
                         <HoverableTextLink className="text-purple" underlineColor={"bg-purple"}>
                             {texts.cv_link}
                         </HoverableTextLink>
-                    </a>
+                    </button>
                 </div>
                 <img src={MyFace} alt="My face" className="rounded-2xl w-60" />
             </Box>

@@ -2,7 +2,7 @@ import Title from "../../common/Title"
 import ExperienceIcon from "../../../assets/titles/experiences.png"
 import Box from "../../common/Box";
 import { getOpacity } from "../../../utils/colors";
-import { convertToMonthYear } from "../../../utils/Strings";
+import { convertToMonthYear } from "../../../utils/time";
 import ExpBranch from "../../../assets/exp_branch.svg";
 
 const Experience = ({ experience, months, children }) => {
@@ -60,7 +60,6 @@ const ExperienceList = ({ experiences, months }) => {
     for (let i = 0, rowIndex = 0; i < experiences.length; i += 2, rowIndex++) {
         const leftExperienceIndex = rowIndex % 2 ? i + 1 : i;
         const rightExperienceIndex = rowIndex % 2 ? i : i + 1;
-        const hasTwoExperiences = i + 1 < experiences.length;
         const hasNextRow = i + 2 < experiences.length;
         const isOnLeft = rowIndex % 2;
 
@@ -69,8 +68,7 @@ const ExperienceList = ({ experiences, months }) => {
                 {hasNextRow && isOnLeft &&
                     <Corner onLeft={true} opacity={cornerOpacity} />
                 }
-                <Experience experience={experiences[leftExperienceIndex]} months={months}>
-                </Experience>
+                <Experience experience={experiences[leftExperienceIndex]} months={months} />
                 <span className={`bg-brown w-20 h-[3px] ${experiences[i] && experiences[i + 1] ? getOpacity(opacity) : "opacity-0"}`} />
                 <Experience experience={experiences[rightExperienceIndex]} months={months} />
                 {hasNextRow && !isOnLeft &&
@@ -94,7 +92,7 @@ const Experiences = ({ language, destRef }) => {
     return (
         <div ref={destRef}>
             <Title title={texts.title} image={ExperienceIcon} color="brown"
-            withLeftBar={<img src={ExpBranch} alt="Branch" className="absolute left-3 top-1" />}>
+                withLeftBar={<img src={ExpBranch} alt="Branch" className="absolute left-3 top-1" />}>
                 <div className="space-y-16 ml-16 mt-5">
                     <ExperienceList experiences={texts.experiences} months={language.texts.months} />
                 </div>

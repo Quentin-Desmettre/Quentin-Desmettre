@@ -1,5 +1,5 @@
 import Title from "../../common/Title"
-import { formatValue } from "../../../utils/Strings"
+import { formatNumeric } from "../../../utils/Strings"
 import StatsIcon from "../../../assets/titles/stats.png"
 import ElementRow from "../../common/ElementRow"
 import Box from "../../common/Box"
@@ -17,7 +17,7 @@ const Statistic = ({ title, value }) => {
     return (
         <div className="flex flex-col">
             <span className="font-bold text-green-text text-4xl ">
-                {formatValue(value.toFixed(0))}
+                {formatNumeric(value.toFixed(0))}
             </span>
             <span className="text-grey text-lg">
                 {title}
