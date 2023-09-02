@@ -4,7 +4,8 @@ import Projects from './pages/Projects';
 import "./index.css"
 import Header from './components/layout/header/Header';
 import Footer from './components/layout/footer/Footer';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
+import React from 'react';
 import { getCurrentLanguage, setCurrentLanguage, loadLanguages } from './services/LanguageService';
 
 const App = () => {
@@ -17,14 +18,22 @@ const App = () => {
 
   let [language, setLanguageState] = useState(getCurrentLanguage());
 
+  const sectionsRefs = {
+    header: useRef(null),
+    about_me: useRef(null),
+    hobbies: useRef(null),
+    experiences: useRef(null),
+    contact: useRef(null)
+  }
+
   return (
     <div className="bg-main-background">
-      <Header languages={languages} language={language} setLanguage={setLanguage} />
+      <Header languages={languages} language={language} setLanguage={setLanguage} sectionsRefs={sectionsRefs} />
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/projects" element={<Projects />} />
+        <Route path="/" element={<Home language={language} sectionsRefs={sectionsRefs} />} />
+        <Route path="/projects" element={<Projects language={language} />} />
       </Routes>
-      <Footer language={language} />
+      <Footer language={language} sectionsRefs={sectionsRefs}/>
     </div>
   );
 };

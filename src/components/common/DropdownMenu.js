@@ -10,7 +10,7 @@ const DropdownMenu = ({ selectedStyle, dropdownStyle, choicesStyle, options, sel
 
     const DropdownArrow = () => {
         return (<svg
-            className={`ml-2 h-5 w-5 ${isOpen ? 'transform rotate-180' : ''}`}
+            className={`ml-2 mt-1 h-5 w-5 ${isOpen ? 'transform rotate-180 mb-2' : ''}`}
             fill="currentColor"
             viewBox="0 0 20 20"
             xmlns="http://www.w3.org/2000/svg"

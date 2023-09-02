@@ -13,8 +13,20 @@ module.exports = {
         "button-background": "#238636",
         "light-background": "#161B22",
         "light-light-background": "#21262D",
+        "main-stroke": "#272E37",
         "footer-text": "#D5D4CA",
-        "green": "#238636"
+        "green-button": "#238636",
+        "purple": "#733EC7",
+        "blue": "#2876DE",
+        "green-text": "#72B01D",
+        "brown": "#FFA28B",
+        "grey": "#747473",
+      },
+      boxShadow: {
+        'purple': '0px 0px 20px 12px rgba(115, 62, 199, 1);',
+        'blue': '0px 0px 20px 12px rgba(40, 118, 222, 1);',
+        'green': '0px 0px 20px 12px rgba(114, 176, 29, 1);',
+        'brown': '0px 0px 20px 12px rgba(255, 162, 139, 1);',
       }
     },
   },

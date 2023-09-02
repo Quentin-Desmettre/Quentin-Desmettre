@@ -21,17 +21,14 @@
         "hobbies": [
             {
                 "title": "Sports",
-                "image": "sports.png",
                 "description": "Je pratique le football depuis l'âge de 6 ans. J'ai joué en club pendant 10 ans et je continue à jouer avec des amis. J'aime aussi regarder des matchs de football à la télévision."
             },
             {
                 "title": "Informatique",
-                "image": "computer.png",
                 "description": "J'aime passer du temps sur mon ordinateur. Je joue à des jeux vidéo et je regarde des vidéos sur YouTube. J'aime aussi apprendre de nouvelles choses sur l'informatique."
             },
             {
                 "title": "Echecs",
-                "image": "chess.png",
                 "description": "Je joue aux échecs depuis l'âge de 6 ans. J'ai participé à des tournois et j'ai gagné quelques prix. J'aime jouer aux échecs avec des amis."
             }
         ]
@@ -47,7 +44,7 @@
     },
     "featured_projects": {
         "title": "Projets à la une",
-        "all_projects": "Voir tous les projets"
+        "all_projects": "Tous mes projets"
     },
     "experiences": {
         "title": "Expériences profesionelles",
@@ -69,15 +66,34 @@
                 "start_date": "06/02/2023",
                 "end_date": "N/A",
                 "description": "En tant que membre à part entière de l'équipe pédagogique d'Epitech, encadrement, accompagnement, aide pédagogique et technique aux étudiants."
+            },
+            {
+                "title": "Développeur Full Stack",
+                "company": "S Com System",
+                "logo": "scomsystem.png",
+                "location": "Roubaix",
+                "start_date": "04/07/2022",
+                "end_date": "23/12/2022",
+                "description": "Développement complet de logiciels web de gestion.\nGestion des relations clients.\nMise en production et intégration continue."
             }
         ]
     },
     "contact": {
         "title": "Contact",
         "email": "Email",
-        "objet": "Objet",
+        "email_placeholder": "mail@example.com",
+        "object": "Objet",
+        "object_placeholder": "Objet de votre message",
         "message": "Message",
-        "send": "Envoyer"
+        "send": "Envoyer",
+        "success": "Message envoyé avec succès",
+        "error": "Une erreur est survenue",
+        "errors": {
+            "invalid_email": "Email invalide",
+            "empty_object": "Objet vide",
+            "empty_message": "Message vide",
+            "too_long_message": "Message trop long"
+        }
     },
     "footer": {
         "email_copied": "Email copié"
@@ -91,5 +107,19 @@
             "linkedin": "https://www.linkedin.com/in/quentin-desmettre/",
             "email": "quentin.desmettre@epitech.eu"
         }
-    }
+    },
+    "months": [
+        "Jan.",
+        "Fév.",
+        "Mars",
+        "Avr.",
+        "Mai",
+        "Juin",
+        "Juil.",
+        "Août",
+        "Sept.",
+        "Oct.",
+        "Nov.",
+        "Déc."
+    ]
 }
