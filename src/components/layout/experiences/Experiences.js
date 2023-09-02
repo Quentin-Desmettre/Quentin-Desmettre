@@ -64,7 +64,7 @@ const ExperienceList = ({ experiences, months }) => {
         const isOnLeft = rowIndex % 2;
 
         rows.push(
-            <div className={`flex items-center ${rowIndex % 2 ? "ml-24" : "mr-24"}`}>
+            <div key={i} className={`flex items-center ${rowIndex % 2 ? "ml-24" : "mr-24"}`}>
                 {hasNextRow && isOnLeft &&
                     <Corner onLeft={true} opacity={cornerOpacity} />
                 }

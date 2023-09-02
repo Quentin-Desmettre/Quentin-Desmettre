@@ -20,7 +20,7 @@ const FeaturedProjects = ({ language, projects }) => {
                 {Object.keys(projects).map((key) => {
                     if (projectsDisplayed++ >= 3)
                         return null;
-                    return <Project name={key} name_color="text-green-text" underline_color="bg-green-text"
+                    return <Project key={key} name={key} name_color="text-green-text" underline_color="bg-green-text"
                         description={projects[key].desc}
                         created_at={projects[key].created_at}
                         updated_at={projects[key].last_updated}
