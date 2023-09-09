@@ -8,6 +8,7 @@ const app = express()
 const { checkUsername, checkDataType, sendError } = require('./utils/routeChecks')
 const { fetchData } = require('./utils/FetchData')
 const { sendEmail } = require('./utils/sendEmail')
+const GOOGLE_RECAPTCHA_SECRET_KEY = process.env["GOOGLE_RECAPTCHA_SECRET_KEY"]
 
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*'); // TODO: Change this to the actual domain
@@ -58,7 +59,7 @@ app.post('/sendEmail', jsonParser, async (req, res) => {
 
     // Verify token
     // TODO: Change this to the actual secret key
-    const response = await fetch(`https://www.google.com/recaptcha/api/siteverify?secret=${"6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe"}&response=${token}`, {
+    const response = await fetch(`https://www.google.com/recaptcha/api/siteverify?secret=${GOOGLE_RECAPTCHA_SECRET_KEY}&response=${token}`, {
         method: "POST",
     })
     const data = await response.json();
