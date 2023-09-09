@@ -43,7 +43,7 @@ const Header = ({ languages, language, setLanguage }) => {
                 <div className="inline-block h-12 mr-6 min-h-[1em] w-0.5 self-stretch bg-neutral-100 opacity-100"></div>
                 <DropdownMenu options={languages} selectedOption={language} setOption={setLanguage}
                     selectedStyle="text-header-text font-bold"
-                    dropdownStyle="w-40 bg-light-background"
+                    dropdownStyle="w-40 bg-light-background outline outline-2 outline-light-light-background"
                     choicesStyle="text-header-text hover:bg-light-light-background"
                 />
             </ElementRow>
