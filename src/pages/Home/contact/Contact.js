@@ -170,7 +170,7 @@ const Contact = ({ language }) => {
                 </span>
                 <div className='flex w-9/12 mr-10 justify-start'>
                     <ReCAPTCHA
-                        sitekey='6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI'
+                        sitekey='6LcwexEoAAAAAHDhSzkP3hDUNQqalK5Hpv_gVsrq'
                         onChange={validateCaptcha}
                         theme="dark"
                     />
