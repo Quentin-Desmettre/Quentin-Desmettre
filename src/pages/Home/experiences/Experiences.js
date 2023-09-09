@@ -4,6 +4,7 @@ import Box from "../../../components/common/Box";
 import { getOpacity } from "../../../utils/colors";
 import { convertToMonthYear } from "../../../utils/time";
 import ExpBranch from "../../../assets/exp_branch.svg";
+import MountTransition from "../../../components/common/MountTransition";
 
 const Experience = ({ experience, months, children }) => {
     if (!experience)
@@ -64,17 +65,20 @@ const ExperienceList = ({ experiences, months }) => {
         const isOnLeft = rowIndex % 2;
 
         rows.push(
-            <div key={i} className={`flex items-center ${rowIndex % 2 ? "ml-24" : "mr-24"}`}>
-                {hasNextRow && isOnLeft &&
-                    <Corner onLeft={true} opacity={cornerOpacity} />
-                }
-                <Experience experience={experiences[leftExperienceIndex]} months={months} />
-                <span className={`bg-brown w-20 h-[3px] ${experiences[i] && experiences[i + 1] ? getOpacity(opacity) : "opacity-0"}`} />
-                <Experience experience={experiences[rightExperienceIndex]} months={months} />
-                {hasNextRow && !isOnLeft &&
-                    <Corner onLeft={false} opacity={cornerOpacity} />
-                }
-            </div>
+            <MountTransition styleFrom={`opacity-0 transform ${isOnLeft ? "-translate-x-10" : "translate-x-10"}`} styleTo={"opacity-100"}>
+                <div key={i} className={`flex items-center ${rowIndex % 2 ? "ml-24" : "mr-24"}`}>
+                    {(hasNextRow && isOnLeft) ?
+                        <Corner onLeft={true} opacity={cornerOpacity} />
+                        : null
+                    }
+                    <Experience experience={experiences[leftExperienceIndex]} months={months} />
+                    <span className={`bg-brown w-20 h-[3px] ${experiences[i] && experiences[i + 1] ? getOpacity(opacity) : "opacity-0"}`} />
+                    <Experience experience={experiences[rightExperienceIndex]} months={months} />
+                    {hasNextRow && !isOnLeft &&
+                        <Corner onLeft={false} opacity={cornerOpacity} />
+                    }
+                </div>
+            </MountTransition>
         )
         opacity = Math.max(0.3, opacity - 0.175);
         cornerOpacity = Math.max(0.3, cornerOpacity - 0.175);
@@ -91,8 +95,12 @@ const Experiences = ({ language }) => {
 
     return (
         <div id="experiences">
-            <Title title={texts.title} image={ExperienceIcon} color="brown"
-                withLeftBar={<img src={ExpBranch} alt="Branch" className="absolute left-3 top-1" />}>
+            <Title title={texts.title} image={ExperienceIcon} color="brown" index={3}
+                withLeftBar={
+                    <MountTransition styleFrom="opacity-0" styleTo="opacity-100" origin="origin-top" delay="delay-[700ms]">
+                        <img src={ExpBranch} alt="Branch" className="absolute left-3 top-1" />
+                    </MountTransition>
+                }>
                 <div className="space-y-16 ml-16 mt-5">
                     <ExperienceList experiences={texts.experiences} months={language.texts.months} />
                 </div>

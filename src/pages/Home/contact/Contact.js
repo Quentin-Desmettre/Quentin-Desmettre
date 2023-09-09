@@ -6,6 +6,7 @@ import Box from '../../../components/common/Box';
 import Loading from '../../../assets/loading.svg';
 import ReCAPTCHA from "react-google-recaptcha";
 import { validEmail, defaultEmailSentData, defaultMessage, maxMessageLength, maxFieldLength } from './defaultValues';
+import MountTransition from '../../../components/common/MountTransition';
 
 const ContactInput = ({ label, placeholder = "", isTextArea = false, value, onChange, isValid }) => {
     const className = "text-sm text-white align-top p-2 mt-2 mb-1 ml-2 bg-main-background outline outline-1 rounded w-full" + (isValid ? " outline-main-stroke" : " outline-red-600");
@@ -140,55 +141,57 @@ const Contact = ({ language }) => {
         setMessage(defaultMessage);
     }
     return (
-        <div id="contact" className="flex flex-col items-center justify-center">
-            <h1 className="text-4xl font-bold text-white m-6">{contact.title}</h1>
-            <Box className="flex flex-col text-sm w-7/12 px-5 py-5 items-end">
-                <div className='w-full'>
-                    <ContactInput label={contact.firstname} placeholder={contact.firstname_placeholder} value={message.firstname} onChange={(event) => {
-                        changeField("firstname", event.target.value);
-                    }} isValid={true} />
+        <MountTransition styleFrom={"opacity-0"} styleTo={"opacity-100"}>
+            <div id="contact" className="flex flex-col items-center justify-center">
+                <h1 className="text-4xl font-bold text-white m-6">{contact.title}</h1>
+                <Box className="flex flex-col text-sm w-7/12 px-5 py-5 items-end">
+                    <div className='w-full'>
+                        <ContactInput label={contact.firstname} placeholder={contact.firstname_placeholder} value={message.firstname} onChange={(event) => {
+                            changeField("firstname", event.target.value);
+                        }} isValid={true} />
 
-                    <ContactInput label={contact.lastname} placeholder={contact.lastname_placeholder} value={message.lastname} onChange={(event) => {
-                        changeField("lastname", event.target.value);
-                    }} isValid={true} />
+                        <ContactInput label={contact.lastname} placeholder={contact.lastname_placeholder} value={message.lastname} onChange={(event) => {
+                            changeField("lastname", event.target.value);
+                        }} isValid={true} />
 
-                    <ContactInput label={contact.email} placeholder={contact.email_placeholder} value={message.email} onChange={(event) => {
-                        changeField("email", event.target.value);
-                    }} isValid={message.email.length === 0 || message.email.match(validEmail)} />
+                        <ContactInput label={contact.email} placeholder={contact.email_placeholder} value={message.email} onChange={(event) => {
+                            changeField("email", event.target.value);
+                        }} isValid={message.email.length === 0 || message.email.match(validEmail)} />
 
-                    <ContactInput label={contact.object} placeholder={contact.object_placeholder} value={message.object} onChange={(event) => {
-                        changeField("object", event.target.value);
-                    }} isValid={true} />
+                        <ContactInput label={contact.object} placeholder={contact.object_placeholder} value={message.object} onChange={(event) => {
+                            changeField("object", event.target.value);
+                        }} isValid={true} />
 
-                    <ContactInput label={contact.message} isTextArea={true} value={message.message} onChange={(event) => {
-                        changeField("message", event.target.value);
-                    }} isValid={message.message.length <= maxMessageLength} />
-                </div>
-                <span className={(message.message.length > maxMessageLength ? "text-red-600 " : "") +
-                    "mr-12 mt-2 text-header-text text-end"}>
-                    {message.message.length}/{maxMessageLength}
-                </span>
-                <div className='flex w-9/12 mr-10 justify-start'>
-                    <ReCAPTCHA
-                        sitekey='6LcwexEoAAAAAHDhSzkP3hDUNQqalK5Hpv_gVsrq'
-                        onChange={validateCaptcha}
-                        theme="dark"
-                    />
-                </div>
-                <div className='mr-10 my-3 flex flex-row justify-end w-9/12'>
-                    <div className="flex items-center space-x-2 pl-2">
-                        <span className={"font-bold text-justify " + (emailSentData.success ? "text-green-text" : "text-red-600")}>
-                            {emailSentData.infos}
-                        </span>
-                        <Button disabled={!canSendEmail} image={Send} onClick={trySendEmail}>
-                            {contact.send}
-                            <img src={Loading} alt="partCircle" className={`ml-2 opacity-0 w-5 h-5 animate-spin ${isSendingEmail ? "opacity-100" : "opacity-0"}`} />
-                        </Button>
+                        <ContactInput label={contact.message} isTextArea={true} value={message.message} onChange={(event) => {
+                            changeField("message", event.target.value);
+                        }} isValid={message.message.length <= maxMessageLength} />
                     </div>
-                </div>
-            </Box>
+                    <span className={(message.message.length > maxMessageLength ? "text-red-600 " : "") +
+                        "mr-12 mt-2 text-header-text text-end"}>
+                        {message.message.length}/{maxMessageLength}
+                    </span>
+                    <div className='flex w-9/12 mr-10 justify-start'>
+                        <ReCAPTCHA
+                            sitekey='6LcwexEoAAAAAHDhSzkP3hDUNQqalK5Hpv_gVsrq'
+                            onChange={validateCaptcha}
+                            theme="dark"
+                        />
+                    </div>
+                    <div className='mr-10 my-3 flex flex-row justify-end w-9/12'>
+                        <div className="flex items-center space-x-2 pl-2">
+                            <span className={"font-bold text-justify " + (emailSentData.success ? "text-green-text" : "text-red-600")}>
+                                {emailSentData.infos}
+                            </span>
+                            <Button disabled={!canSendEmail} image={Send} onClick={trySendEmail}>
+                                {contact.send}
+                                <img src={Loading} alt="partCircle" className={`ml-2 opacity-0 w-5 h-5 animate-spin ${isSendingEmail ? "opacity-100" : "opacity-0"}`} />
+                            </Button>
+                        </div>
+                    </div>
+                </Box>
 
-        </div>
+            </div>
+        </MountTransition>
     )
 }
 

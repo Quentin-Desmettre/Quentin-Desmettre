@@ -15,7 +15,7 @@ const AboutMe = ({ language }) => {
 
     return (
         <div id="about_me">
-            <Title title={texts.title} image={InfoImage} color="purple" topBorder={false} />
+            <Title title={texts.title} image={InfoImage} color="purple" topBorder={false} index={0} />
             <Box className="flex px-8 py-4">
                 <div className='flex flex-col ml-6'>
                     <div className="h-5/6 flex items-center">

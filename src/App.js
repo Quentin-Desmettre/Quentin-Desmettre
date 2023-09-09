@@ -20,7 +20,6 @@ const App = () => {
 
     return (
         <div className="bg-main-background flex flex-col justify-between min-h-screen">
-            
 
             <Header languages={languages} language={language} setLanguage={setLanguage} />
             <Routes>

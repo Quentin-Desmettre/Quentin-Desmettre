@@ -1,13 +1,13 @@
 import { useEffect } from "react";
 
-const useMount = (reference, onMount, onUnmount) => {
+const useMount = (reference, onMount, onUnmount = () => {}) => {
     useEffect(() => {
         const observer = new IntersectionObserver((entries) => {
             entries.forEach((entry) => {
                 if (entry.isIntersecting) {
                     onMount();
                 } else
-                    onUnmount();
+                    onUnmount()
             });
         });
 
