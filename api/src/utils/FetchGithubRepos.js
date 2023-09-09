@@ -21,11 +21,9 @@ const getTagsAndLinks = async (username, repository) => {
 }
 
 const fetchGithubRepos = async (username) => {
-    console.log("Fetching repositories for " + username + "...")
     const repositories = await fetchAllPages('GET /users/{username}/repos', {
         username: username
     });
-    console.log("REPOS === Fetched " + repositories.length + " repositories for " + username);
 
     let repos = {};
 
@@ -56,9 +54,7 @@ const fetchGithubRepos = async (username) => {
     // links are searched in repo/.github/metadata.json, in the "links" field
     await Promise.all(repositories.map(async (repository) => {
 
-        console.log("REPO === " + repository.name)
         const [tags, links] = await getTagsAndLinks(username, repository);
-        console.log("REPO === " + repository.name + " === " + tags + " === " + links + " ===")
 
         repos[repository.name] = {
             desc: repository.description || "",
@@ -69,7 +65,6 @@ const fetchGithubRepos = async (username) => {
             links: links
         }
     }));
-    console.log("Finished fetching repos for " + username + ".")
 
     return repos;
 }

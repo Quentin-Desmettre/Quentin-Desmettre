@@ -1,35 +1,23 @@
 require('dotenv').config()
+
 const PORT = process.env.PORT || 3000
+const bodyParser = require('body-parser')
+const jsonParser = bodyParser.json()
 const express = require('express')
 const app = express()
+const { checkUsername, checkDataType, sendError } = require('./utils/routeChecks')
 const { fetchData } = require('./utils/FetchData')
+const { sendEmail } = require('./utils/sendEmail')
+
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*'); // TODO: Change this to the actual domain
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    next();
+});
 
 app.listen(PORT, () => {
-    console.log("Server running on port 3000");
+    console.log("Server running on port " + PORT);
 })
-
-const sendError = (res, error, status=500) => {
-    res.status(status).send({
-        error: error
-    })
-}
-
-const checkUsername = (username) => {
-    // TODO: Find a way to handle multiple usernames, without surcharging the server with requests
-    if (!username || username !== 'Quentin-Desmettre') {
-        return false;
-    }
-    return true;
-}
-
-const checkDataType = (data_type) => {
-    if (!data_type)
-        return true;
-    if (!['stats', 'repos'].includes(data_type)) {
-        return false;
-    }
-    return true;
-}
 
 app.get('/user/:username/:data_type?', async (req, res) => {
     const { username, data_type } = req.params;
@@ -47,4 +35,50 @@ app.get('/user/:username/:data_type?', async (req, res) => {
         return;
     }
     res.send(data);
+})
+
+app.post('/sendEmail', jsonParser, async (req, res) => {
+    // Fetch data
+    const {
+        token,
+        object,
+        firstname,
+        lastname,
+        email,
+        message
+    } = req.body;
+
+    if (!token || !object || !firstname || !lastname || !email || !message) {
+        res.send({
+            success: false,
+            error: "Missing fields"
+        });
+        return;
+    }
+
+    // Verify token
+    // TODO: Change this to the actual secret key
+    const response = await fetch(`https://www.google.com/recaptcha/api/siteverify?secret=${"6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe"}&response=${token}`, {
+        method: "POST",
+    })
+    const data = await response.json();
+
+    if (!data.success) {
+        res.send({
+            success: false,
+            error: "Invalid captcha"
+        });
+        return;
+    }
+
+    // Send email
+    if ((await sendEmail(object, firstname, lastname, email, message)) !== true)
+        res.send({
+            success: false,
+            error: "Internal Server Error"
+        });
+    else
+        res.send({
+            success: true
+        });
 })

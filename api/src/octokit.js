@@ -3,7 +3,6 @@ const { Octokit } = require("@octokit/core");
 const octokit = new Octokit({
     auth: process.env.GITHUB_TOKEN || ''
 })
-console.log("Token:" + process.env.GITHUB_TOKEN)
 
 const githubRequest = (route, params) => {
     return octokit.request(route, {

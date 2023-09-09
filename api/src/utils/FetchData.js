@@ -18,7 +18,6 @@ const fetchData = async (username, type, forceFetch=false) => {
 
     // Check if data has already been fetched
     if (fs.existsSync(FILENAME) && !forceFetch) {
-        console.log("Data already fetched")
         const parsed_data = JSON.parse(fs.readFileSync(FILENAME, 'utf8'));
         if (!type)
             return parsed_data;
@@ -28,7 +27,6 @@ const fetchData = async (username, type, forceFetch=false) => {
 
     // Else, fetch the data
     try {
-        console.log("Fetching data")
         const data = await fetchGithubData(username);
         fs.writeFileSync(FILENAME, JSON.stringify(data, null, 4));
         return type ? data[type] : data;
