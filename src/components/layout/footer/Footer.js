@@ -7,11 +7,10 @@ import HoverableTextLink from '../../common/HoverableTextLink';
 import React from 'react';
 import { useState } from 'react';
 
-const FooterLink = ({ children, href, className, destRef }) => {
+const FooterLink = ({ children, href, className }) => {
     return (
         <HoverableTextLink className={className + " text-footer-text text-sm"}
             href={href}
-            destRef={destRef}
             underlineColor={"bg-footer-text"}
             animation={false}
         >
@@ -49,11 +48,11 @@ const Footer = ({ language, sectionsRefs }) => {
             }
 
             <ElementRow className="space-x-10 mt-3">
-                <FooterLink destRef={sectionsRefs.header}>{texts.header.home}</FooterLink>
-                <FooterLink destRef={sectionsRefs.about_me}>{texts.header.about}</FooterLink>
-                <FooterLink destRef={sectionsRefs.experiences}>{texts.header.experiences}</FooterLink>
+                <FooterLink href="/#header">{texts.header.home}</FooterLink>
+                <FooterLink href="/#about_me">{texts.header.about}</FooterLink>
+                <FooterLink href="/#experiences">{texts.header.experiences}</FooterLink>
                 <FooterLink href='/projects'>{texts.header.projects}</FooterLink>
-                <FooterLink destRef={sectionsRefs.contact}>{texts.header.contact}</FooterLink>
+                <FooterLink href="/#contact">{texts.header.contact}</FooterLink>
             </ElementRow>
 
             <span className="my-6 text-footer-text text-sm">

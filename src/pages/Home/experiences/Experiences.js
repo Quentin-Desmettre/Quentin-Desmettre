@@ -86,11 +86,11 @@ const ExperienceList = ({ experiences, months }) => {
     )
 }
 
-const Experiences = ({ language, destRef }) => {
+const Experiences = ({ language }) => {
     const texts = language.texts.experiences;
 
     return (
-        <div ref={destRef}>
+        <div id="experiences">
             <Title title={texts.title} image={ExperienceIcon} color="brown"
                 withLeftBar={<img src={ExpBranch} alt="Branch" className="absolute left-3 top-1" />}>
                 <div className="space-y-16 ml-16 mt-5">

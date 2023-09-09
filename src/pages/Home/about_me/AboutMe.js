@@ -9,12 +9,12 @@ import Box from '../../../components/common/Box'
 import CV from '../../../assets/cv.pdf'
 import { downloadTxtFile } from '../../../utils/files'
 
-const AboutMe = ({ language, destRef }) => {
+const AboutMe = ({ language }) => {
     const texts = language.texts.about_me;
     const [firstTwoWords, restOfTheText] = extractFirstNWords(texts.description, 2)
 
     return (
-        <div ref={destRef}>
+        <div id="about_me">
             <Title title={texts.title} image={InfoImage} color="purple" topBorder={false} />
             <Box className="flex px-8 py-4">
                 <div className='flex flex-col ml-6'>

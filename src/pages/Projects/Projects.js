@@ -74,7 +74,7 @@ const Filterer = ({ name, options, setProjects, selectedOptions, setSelectedOpti
                         <div key={option.id}>
                             <button className='w-full hover:bg-light-light-background py-1 px-3 flex space-x-2 items-center' onClick={() => { addOption(option) }}>
                                 <span className={`flex items-center justify-center w-4 h-4 transition-all ease-in-out duration-200 ${isOptionToDisplay ? checkedStyle[type] : plainStyle[type]}`}>
-                                    <img className={`h-1/2 transition-all ease-in-out duration-200 ${type == "checkbox" && isOptionToDisplay ? "opacity-100" : "opacity-0"}`} src={CheckMark} alt={"checkmark"} />
+                                    <img className={`h-1/2 transition-all ease-in-out duration-200 ${type === "checkbox" && isOptionToDisplay ? "opacity-100" : "opacity-0"}`} src={CheckMark} alt={"checkmark"} />
                                 </span>
                                 <span className='w-max'>{option.text}</span>
                             </button>
@@ -91,11 +91,19 @@ const filterProjects = (projects, sortBy, tags, searchFilter) => {
     if (!projects)
         return projects
 
-    console.log("projects:", projects)
+    searchFilter = searchFilter.toLowerCase();
     const filteredProjects = projects.filter((project) => {
 
-        const areTagsValid = tags.length === 0 || tags.every((tag) => project.tags.some((projectTag) => projectTag.name === tag.name));
-        const isSearchFilterValid = searchFilter === "" || project.name.includes(searchFilter) || project.description.includes(searchFilter);
+        const areTagsValid =
+            tags.length === 0 ||
+            tags.every((tag) =>
+                project.tags.some((projectTag) => projectTag.name === tag.name)
+            );
+        const isSearchFilterValid =
+            searchFilter === "" ||
+            project.name.toLowerCase().includes(searchFilter) ||
+            project.description.toLowerCase().includes(searchFilter)
+        ;
 
         return areTagsValid && isSearchFilterValid;
     })
@@ -154,7 +162,7 @@ const NoProjects = ({ texts }) => {
         <div className='flex flex-auto items-center justify-center space-x-2'>
             <img src={Loading} alt="loading" className='animate-spin w-6' />
             <span className='text-white font-bold text-sm'>
-                Loading projects...
+                {texts.loading_projects}
             </span>
         </div>
     )
@@ -195,29 +203,21 @@ const Projects = ({ language }) => {
     const [projects, setProjects] = useState(undefined);
     const [filteredProjects, setFilteredProjects] = useState([]);
 
-    const fetchProjects = async () => {
-        const newProjects = await fetchStats();
-        setProjects(newProjects.repos);
-        setFilteredProjects(filterProjects(newProjects.repos, sortBy, selectedTags, text));
-    }
-
     useEffect(() => {
-        if (projects)
-            return;
-        setTimeout(() => {
-            fetchProjects();
-        }, 500);
-    }, [])
-
-    const setTextFilter = (text) => {
-        setText(text);
         setFilteredProjects(filterProjects(projects, sortBy, selectedTags, text));
+    }, [projects, sortBy, selectedTags, text])
+
+    if (!projects) {
+        setTimeout(async () => {
+            const newProjects = await fetchStats();
+            setProjects(newProjects.repos);
+        }, 500);
     }
 
     return (
         <div className="flex flex-col flex-1 items-center text-white mx-12 mt-12 min-h-max">
             <div className='flex space-x-4 w-full'>
-                <SearchBar language={texts} text={text} setText={setTextFilter} />
+                <SearchBar language={texts} text={text} setText={setText} />
                 <Filterer name={texts.sort.title}
                     options={sortByOptions}
                     selectedOptions={sortBy}

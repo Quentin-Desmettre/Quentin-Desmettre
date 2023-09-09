@@ -25,7 +25,7 @@ const ContactInput = ({ label, placeholder = "", isTextArea = false, value, onCh
     )
 }
 
-const Contact = ({ language, destRef }) => {
+const Contact = ({ language }) => {
     const contact = language.texts.contact;
     const defaultEmailSentData = {
         success: false,
@@ -80,7 +80,7 @@ const Contact = ({ language, destRef }) => {
         }, 2000);
     }
     return (
-        <div ref={destRef} className="flex flex-col items-center justify-center">
+        <div id="contact" className="flex flex-col items-center justify-center">
             <h1 className="text-4xl font-bold text-white m-6">{contact.title}</h1>
             <Box className="flex flex-col text-sm w-5/12 px-5 py-5 items-end">
                 <div className='w-full'>

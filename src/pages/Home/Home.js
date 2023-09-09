@@ -5,15 +5,15 @@ import Stats from "./stats/Stats"
 import "../../index.css"
 import Experiences from "./experiences/Experiences"
 
-const Home = ({ language, sectionsRefs }) => {
+const Home = ({ language }) => {
     return (
         <div className="flex justify-center">
             <div className="w-9/12">
-                <AboutMe language={language} destRef={sectionsRefs.about_me} />
-                <Hobbies language={language} destRef={sectionsRefs.hobbies} />
+                <AboutMe language={language} />
+                <Hobbies language={language} />
                 <Stats language={language} />
-                <Experiences language={language} destRef={sectionsRefs.experiences} />
-                <Contact language={language} destRef={sectionsRefs.contact} />
+                <Experiences language={language} />
+                <Contact language={language} />
             </div>
         </div>
     )
