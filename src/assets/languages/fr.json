@@ -80,6 +80,10 @@
     },
     "contact": {
         "title": "Contact",
+        "firstname": "Prénom",
+        "firstname_placeholder": "Votre prénom",
+        "lastname": "Nom",
+        "lastname_placeholder": "Votre nom",
         "email": "Email",
         "email_placeholder": "mail@example.com",
         "object": "Objet",
@@ -89,10 +93,16 @@
         "success": "Message envoyé avec succès",
         "error": "Une erreur est survenue",
         "errors": {
+            "empty_firstname": "Prénom vide",
+            "empty_lastname": "Nom vide",
             "invalid_email": "Email invalide",
             "empty_object": "Objet vide",
             "empty_message": "Message vide",
-            "too_long_message": "Message trop long"
+            "too_long_message": "Message trop long",
+            "too_long_firstname": "Prénom trop long",
+            "too_long_lastname": "Nom trop long",
+            "too_long_object": "Objet trop long",
+            "too_long_email": "Email trop long"
         }
     },
     "footer": {

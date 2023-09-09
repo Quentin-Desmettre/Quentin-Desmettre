@@ -48,7 +48,6 @@ const Filterer = ({ name, options, setProjects, selectedOptions, setSelectedOpti
     const addOption = (option) => {
         setProjects([]);
         if (type === "radio") {
-            console.log(option);
             setSelectedOptions([option]);
             return;
         }
@@ -62,7 +61,7 @@ const Filterer = ({ name, options, setProjects, selectedOptions, setSelectedOpti
     return (
         <div className='relative'>
             <button className="w-28 h-full justify-center bg-light-background flex items-center px-2 py-1 outline outline-1 outline-main-stroke rounded"
-                onClick={() => { setIsOpen(!isOpen); console.log(isOpen); }}
+                onClick={() => { setIsOpen(!isOpen) }}
             >
                 <span className='text-white'>{name}</span>
                 <DropdownArrow isOpen={isOpen} />
@@ -169,8 +168,6 @@ const NoProjects = ({ texts }) => {
 }
 
 const DisplayProjects = ({ texts, searchFilter, projects, filteredProjects }) => {
-    console.log("projects:", projects)
-    console.log("filteredProjects:", filteredProjects)
     return (
         <>
             {searchFilter === "" &&

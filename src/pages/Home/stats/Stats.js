@@ -95,7 +95,6 @@ const Stats = ({ language }) => {
         let data = await fetchStats(3, true);
         if (data === null)
             return;
-        console.log(scrollDirection)
         if (scrollDirection === "up")
             setStatistics(data)
         else

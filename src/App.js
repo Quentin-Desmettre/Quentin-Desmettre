@@ -9,25 +9,27 @@ import React from 'react';
 import { getCurrentLanguage, setCurrentLanguage, loadLanguages } from './services/LanguageService';
 
 const App = () => {
-  const languages = loadLanguages();
+    const languages = loadLanguages();
 
-  const setLanguage = (language) => {
-    setLanguageState(language);
-    setCurrentLanguage(language);
-  }
+    const setLanguage = (language) => {
+        setLanguageState(language);
+        setCurrentLanguage(language);
+    }
 
-  let [language, setLanguageState] = useState(getCurrentLanguage());
+    let [language, setLanguageState] = useState(getCurrentLanguage());
 
-  return (
-    <div className="bg-main-background flex flex-col justify-between min-h-screen">
-      <Header languages={languages} language={language} setLanguage={setLanguage} />
-      <Routes>
-        <Route path="/" element={<Home language={language} />} />
-        <Route path="/projects" element={<Projects language={language} />} />
-      </Routes>
-      <Footer language={language} />
-    </div>
-  );
+    return (
+        <div className="bg-main-background flex flex-col justify-between min-h-screen">
+            
+
+            <Header languages={languages} language={language} setLanguage={setLanguage} />
+            <Routes>
+                <Route path="/" element={<Home language={language} />} />
+                <Route path="/projects" element={<Projects language={language} />} />
+            </Routes>
+            <Footer language={language} />
+        </div>
+    );
 };
 
 export default App;
