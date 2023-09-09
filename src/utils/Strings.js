@@ -14,8 +14,17 @@ const formatNumeric = (value) => {
     return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
+const isInArray = (array, element, comparator) => {
+    for (let i = 0; i < array.length; i++) {
+        if (comparator(array[i], element))
+            return true;
+    }
+    return false;
+}
+
 export {
     firstNWords,
     extractFirstNWords,
     formatNumeric,
+    isInArray,
 }

@@ -1,7 +1,7 @@
-import Box from "../../common/Box"
+import Box from "../../../components/common/Box"
 import StarIcon from "../../../assets/star.png"
-import HoverableTextLink from "../../common/HoverableTextLink"
-import Project from "../../common/Project"
+import HoverableTextLink from "../../../components/common/HoverableTextLink"
+import Project from "../../../components/common/Project"
 
 const FeaturedProjects = ({ language, projects }) => {
     const texts = language.texts.featured_projects;
@@ -21,12 +21,7 @@ const FeaturedProjects = ({ language, projects }) => {
                     if (projectsDisplayed++ >= 3)
                         return null;
                     return <Project key={key} name={key} name_color="text-green-text" underline_color="bg-green-text"
-                        description={projects[key].desc}
-                        created_at={projects[key].created_at}
-                        updated_at={projects[key].last_updated}
-                        url={projects[key].url}
-                        tags={projects[key].tags}
-                        links={projects[key].links}
+                        project={projects[key]}
                     />
                 })}
             </div>

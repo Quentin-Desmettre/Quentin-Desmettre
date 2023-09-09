@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
-import Home from './pages/Home';
-import Projects from './pages/Projects';
+import Home from './pages/Home/Home';
+import Projects from './pages/Projects/Projects';
 import "./index.css"
 import Header from './components/layout/header/Header';
 import Footer from './components/layout/footer/Footer';
@@ -27,7 +27,7 @@ const App = () => {
   }
 
   return (
-    <div className="bg-main-background">
+    <div className="bg-main-background flex flex-col justify-between min-h-screen">
       <Header languages={languages} language={language} setLanguage={setLanguage} sectionsRefs={sectionsRefs} />
       <Routes>
         <Route path="/" element={<Home language={language} sectionsRefs={sectionsRefs} />} />

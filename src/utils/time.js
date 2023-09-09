@@ -17,7 +17,17 @@ const convertToMonthYear = (date, months) => {
     return `${monthName} ${year}`;
 }
 
+const compareDateStrings = (dateString1, dateString2, order = "asc") => {
+    const date1 = new Date(dateString1);
+    const date2 = new Date(dateString2);
+
+    if (order === "asc")
+        return date1 - date2;
+    return date2 - date1;
+}
+
 export {
     convertDateFormat,
-    convertToMonthYear
+    convertToMonthYear,
+    compareDateStrings,
 }

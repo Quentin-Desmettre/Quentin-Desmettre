@@ -1,9 +1,9 @@
-import Contact from "../components/layout/contact/Contact"
-import AboutMe from "../components/layout/about_me/AboutMe"
-import Hobbies from "../components/layout/hobbies/Hobbies"
-import Stats from "../components/layout/stats/Stats"
-import "../index.css"
-import Experiences from "../components/layout/experiences/Experiences"
+import Contact from "./contact/Contact"
+import AboutMe from "./about_me/AboutMe"
+import Hobbies from "./hobbies/Hobbies"
+import Stats from "./stats/Stats"
+import "../../index.css"
+import Experiences from "./experiences/Experiences"
 
 const Home = ({ language, sectionsRefs }) => {
     return (

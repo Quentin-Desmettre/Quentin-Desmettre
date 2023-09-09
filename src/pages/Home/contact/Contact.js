@@ -1,8 +1,8 @@
 import React from 'react'
-import Button from '../../common/Button'
+import Button from '../../../components/common/Button'
 import Send from '../../../assets/send.png'
 import { useState } from 'react';
-import Box from '../../common/Box';
+import Box from '../../../components/common/Box';
 export const validEmail = new RegExp(
     '^[a-zA-Z0-9._:$!%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]$'
 );

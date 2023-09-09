@@ -98,6 +98,22 @@
     "footer": {
         "email_copied": "Email copié"
     },
+    "projects": {
+        "search_for_project": "Rechercher un projet...",
+        "featured_projects": "Projets à la une",
+        "sort": {
+            "title": "Trier par",
+            "by_name": "Nom",
+            "last_created": "Dernière création",
+            "first_created": "Première création",
+            "last_updated": "Dernière mise à jour",
+            "first_updated": "Première mise à jour"
+        },
+        "tags": {
+            "title": "Tags"
+        },
+        "all_projects": "Tous mes projets"
+    },
     "no_translation": {
         "footer": {
             "mention": "©2023 Quentin Desmettre | All rights reserved"

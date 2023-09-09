@@ -1,6 +1,6 @@
-import Title from "../../common/Title"
+import Title from "../../../components/common/Title"
 import ExperienceIcon from "../../../assets/titles/experiences.png"
-import Box from "../../common/Box";
+import Box from "../../../components/common/Box";
 import { getOpacity } from "../../../utils/colors";
 import { convertToMonthYear } from "../../../utils/time";
 import ExpBranch from "../../../assets/exp_branch.svg";
