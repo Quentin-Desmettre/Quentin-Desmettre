@@ -31,7 +31,7 @@ const formatRepos = (repos) => {
 }
 
 const fetchStats = async (nbMostUsedLanguages, sortByLines = true) => {
-    const response = await fetch('http://54.36.183.139:3000/user/Quentin-Desmettre');
+    const response = await fetch('https://quentin-desmettre.fr:3000/user/Quentin-Desmettre');
 
     if (!response.ok)
         return null;

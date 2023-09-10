@@ -90,7 +90,7 @@ const Contact = ({ language }) => {
 
     const sendEmail = async () => {
         try {
-            const response = await fetch("http://54.36.183.139:3000/sendEmail", {
+            const response = await fetch("https://quentin-desmettre.fr:3000/sendEmail", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
