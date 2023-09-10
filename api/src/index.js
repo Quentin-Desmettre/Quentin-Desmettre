@@ -1,85 +1,28 @@
 require('dotenv').config()
 
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT
+const express = require('express')
+const { handleEmailSend } = require('./routes/handleEmailSend')
+const { fetchUserData } = require('./routes/fetchUserData')
+
+// Express APP configuration
+const app = express()
 const bodyParser = require('body-parser')
 const jsonParser = bodyParser.json()
-const express = require('express')
-const app = express()
-const { checkUsername, checkDataType, sendError } = require('./utils/routeChecks')
-const { fetchData } = require('./utils/FetchData')
-const { sendEmail } = require('./utils/sendEmail')
-const GOOGLE_RECAPTCHA_SECRET_KEY = process.env["GOOGLE_RECAPTCHA_SECRET_KEY"]
-
 app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*'); // TODO: Change this to the actual domain
+    res.header('Access-Control-Allow-Origin', process.env.CORS_ALLOWED_ORIGINS);
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
     next();
 });
 
-app.listen(PORT, () => {
-    console.log("Server running on port " + PORT);
-})
+// GET routes
+app.get('/user/:username/:data_type?', fetchUserData)
 
-app.get('/user/:username/:data_type?', async (req, res) => {
-    const { username, data_type } = req.params;
+// POST routes
+app.post('/sendEmail', jsonParser, handleEmailSend)
 
-    // Error handling
-    if (!checkUsername(username) || !checkDataType(data_type)) {
-        sendError(res, "Invalid username or data type", 400);
-        return;
-    }
-
-    // Fetch data
-    const data = await fetchData(username, data_type);
-    if (!data) {
-        sendError(res, "Internal Server Error");
-        return;
-    }
-    res.send(data);
-})
-
-app.post('/sendEmail', jsonParser, async (req, res) => {
-    // Fetch data
-    const {
-        token,
-        object,
-        firstname,
-        lastname,
-        email,
-        message
-    } = req.body;
-
-    if (!token || !object || !firstname || !lastname || !email || !message) {
-        res.send({
-            success: false,
-            error: "Missing fields"
-        });
-        return;
-    }
-
-    // Verify token
-    // TODO: Change this to the actual secret key
-    const response = await fetch(`https://www.google.com/recaptcha/api/siteverify?secret=${GOOGLE_RECAPTCHA_SECRET_KEY}&response=${token}`, {
-        method: "POST",
-    })
-    const data = await response.json();
-
-    if (!data.success) {
-        res.send({
-            success: false,
-            error: "Invalid captcha"
-        });
-        return;
-    }
-
-    // Send email
-    if ((await sendEmail(object, firstname, lastname, email, message)) !== true)
-        res.send({
-            success: false,
-            error: "Internal Server Error"
-        });
-    else
-        res.send({
-            success: true
-        });
+// Starting https server
+const httpsServer = require('./httpsServer').createHttpsServer(app);
+httpsServer.listen(PORT, () => {
+    console.log("HTTPS server running on port " + PORT);
 })
