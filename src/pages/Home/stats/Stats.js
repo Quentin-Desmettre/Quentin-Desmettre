@@ -3,7 +3,7 @@ import { formatNumeric } from "../../../utils/Strings"
 import StatsIcon from "../../../assets/titles/stats.png"
 import ElementRow from "../../../components/common/ElementRow"
 import Box from "../../../components/common/Box"
-import React from "react"
+import React, { useContext } from "react"
 import { useState, useRef } from "react"
 import languageColors from "../../../utils/languages_colors"
 import widthForPercent from "../../../utils/width_for_percent"
@@ -13,6 +13,7 @@ import FeaturedProjects from "./FeaturedProjects"
 import StatBranch from "../../../assets/stat_branch.svg"
 import useScrollDirection from "../../../hooks/useScrollDirection"
 import MountTransition from "../../../components/common/MountTransition"
+import { LanguageContext } from "../../../contexts/language"
 
 const Statistic = ({ title, value }) => {
 
@@ -88,7 +89,8 @@ const displayStats = (data, setStatistics) => {
     }, delay)
 }
 
-const Stats = ({ language }) => {
+const Stats = () => {
+    const { language } = useContext(LanguageContext);
     const texts = language.texts.statistics;
     const [statistics, setStatistics] = useState(defaultStatistics);
     const scrollDirection = useScrollDirection();

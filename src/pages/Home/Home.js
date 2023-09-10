@@ -6,16 +6,16 @@ import "../../index.css"
 import Experiences from "./experiences/Experiences"
 import Topper from "./Topper"
 
-const Home = ({ language }) => {
+const Home = () => {
     return (
         <div className="flex flex-col justify-center items-center">
-            <Topper language={language} />
+            <Topper />
             <div className="w-9/12">
-                <AboutMe language={language} />
-                <Hobbies language={language} />
-                <Stats language={language} />
-                <Experiences language={language} />
-                <Contact language={language} />
+                <AboutMe />
+                <Hobbies />
+                <Stats />
+                <Experiences />
+                <Contact />
             </div>
         </div>
     )

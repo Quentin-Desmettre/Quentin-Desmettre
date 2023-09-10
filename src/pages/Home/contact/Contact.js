@@ -1,12 +1,12 @@
-import React, { useEffect } from 'react'
 import Button from '../../../components/common/Button'
 import Send from '../../../assets/send.png'
-import { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Box from '../../../components/common/Box';
 import Loading from '../../../assets/loading.svg';
 import ReCAPTCHA from "react-google-recaptcha";
 import { validEmail, defaultEmailSentData, defaultMessage, maxMessageLength, maxFieldLength } from './defaultValues';
 import MountTransition from '../../../components/common/MountTransition';
+import { LanguageContext } from '../../../contexts/language';
 
 const ContactInput = ({ label, placeholder = "", isTextArea = false, value, onChange, isValid }) => {
     const className = "text-sm text-white align-top p-2 mt-2 mb-1 ml-2 bg-main-background outline outline-1 rounded w-full" + (isValid ? " outline-main-stroke" : " outline-red-600");
@@ -26,14 +26,14 @@ const ContactInput = ({ label, placeholder = "", isTextArea = false, value, onCh
     )
 }
 
-const Contact = ({ language }) => {
+const Contact = () => {
+    const { language } = useContext(LanguageContext);
     const contact = language.texts.contact;
     const [emailSentData, setEmailSentData] = useState(defaultEmailSentData);
     const [isSendingEmail, setIsSendingEmail] = useState(false);
     const [canSendEmail, setCanSendEmail] = useState(false);
     const [message, setMessage] = useState(defaultMessage);
     const [token, setToken] = useState("");
-    const [captchaTimeout, setCaptchaTimeout] = useState(0);
 
     const changeField = (field, value) => {
         let newMessage = JSON.parse(JSON.stringify(message));
@@ -45,19 +45,7 @@ const Contact = ({ language }) => {
     const validateCaptcha = async (newToken) => {
         setToken(newToken)
         setCanSendEmail(newToken !== null);
-        if (newToken === null)
-            return;
-        setCaptchaTimeout(120);
     }
-
-    useEffect(() => {
-        if (captchaTimeout === 0)
-            return;
-        const interval = setInterval(() => {
-            setCaptchaTimeout(captchaTimeout - 1);
-        }, 1000);
-        return () => clearInterval(interval);
-    }, [captchaTimeout])
 
     const getFormErrorMessage = () => {
         if (message.firstname.length === 0)

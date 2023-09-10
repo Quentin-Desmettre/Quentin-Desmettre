@@ -5,6 +5,8 @@ import { getOpacity } from "../../../utils/colors";
 import { convertToMonthYear } from "../../../utils/time";
 import ExpBranch from "../../../assets/exp_branch.svg";
 import MountTransition from "../../../components/common/MountTransition";
+import { useContext } from "react";
+import { LanguageContext } from "../../../contexts/language";
 
 const Experience = ({ experience, months, children }) => {
     if (!experience)
@@ -90,7 +92,8 @@ const ExperienceList = ({ experiences, months }) => {
     )
 }
 
-const Experiences = ({ language }) => {
+const Experiences = () => {
+    const { language } = useContext(LanguageContext)
     const texts = language.texts.experiences;
 
     return (

@@ -1,12 +1,13 @@
 import contact from "../../../assets/contact.png"
 import profile from "../../../assets/profile.png"
-import React from "react";
+import React, { useContext } from "react";
 import Button from "../../common/Button";
 import CircleButton from "../../common/CircleButton";
 import DropdownMenu from "../../common/DropdownMenu";
 import HoverableTextLink from "../../common/HoverableTextLink";
 import ElementRow from "../../common/ElementRow";
 import useScrollDirection from "../../../hooks/useScrollDirection";
+import { LanguageContext } from "../../../contexts/language";
 
 const HeaderText = ({ href, children }) => {
     return (
@@ -16,7 +17,8 @@ const HeaderText = ({ href, children }) => {
     )
 }
 
-const Header = ({ languages, language, setLanguage }) => {
+const Header = () => {
+    const { language, languages, setLanguage } = useContext(LanguageContext);
     const texts = language.texts;
 
     const handleClickOnCircle = () => {

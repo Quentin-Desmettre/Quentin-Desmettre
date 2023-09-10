@@ -1,11 +1,11 @@
+import React, { useContext, useState } from 'react';
+import { LanguageContext } from '../../../contexts/language'
 import linkedin from '../../../assets/linkedin.png'
 import github from '../../../assets/github.png'
 import email from '../../../assets/email.png'
 import CircleButton from '../../common/CircleButton'
 import ElementRow from '../../common/ElementRow'
 import HoverableTextLink from '../../common/HoverableTextLink';
-import React from 'react';
-import { useState } from 'react';
 
 const FooterLink = ({ children, href, className }) => {
     return (
@@ -19,7 +19,8 @@ const FooterLink = ({ children, href, className }) => {
     )
 }
 
-const Footer = ({ language, sectionsRefs }) => {
+const Footer = () => {
+    const { language } = useContext(LanguageContext);
     const texts = language.texts;
     const no_translation = language.texts.no_translation;
 
