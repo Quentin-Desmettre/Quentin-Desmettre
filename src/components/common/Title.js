@@ -1,6 +1,4 @@
 import { boxShadow, fromColor } from "../../utils/colors"
-import { useState, useRef } from "react"
-import useMount from "../../utils/useMount"
 import MountTransition from "./MountTransition"
 
 const Title = ({ title, image, color, topBorder = true, children, withLeftBar, index }) => {

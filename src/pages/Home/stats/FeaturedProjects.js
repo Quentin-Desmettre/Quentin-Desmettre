@@ -1,4 +1,3 @@
-import Box from "../../../components/common/Box"
 import StarIcon from "../../../assets/star.png"
 import HoverableTextLink from "../../../components/common/HoverableTextLink"
 import Project from "../../../components/common/Project"
