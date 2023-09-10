@@ -8,10 +8,10 @@ import { useState, useRef } from "react"
 import languageColors from "../../../utils/languages_colors"
 import widthForPercent from "../../../utils/width_for_percent"
 import { fetchStats, defaultStatistics } from "../../../utils/fetchGithubData"
-import useMount from "../../../utils/useMount"
+import useMount from "../../../hooks/useMount"
 import FeaturedProjects from "./FeaturedProjects"
 import StatBranch from "../../../assets/stat_branch.svg"
-import useScrollDirection from "../../../utils/useScrollDirection"
+import useScrollDirection from "../../../hooks/useScrollDirection"
 import MountTransition from "../../../components/common/MountTransition"
 
 const Statistic = ({ title, value }) => {
@@ -134,9 +134,9 @@ const Stats = ({ language }) => {
                                 if (color === undefined)
                                     color = 'bg-grey';
                                 return (
-                                    <MountTransition styleFrom={"transform -translate-x-10 opacity-0"} styleTo={"opacity-100"}>
+                                    <MountTransition key={index} styleFrom={"transform -translate-x-10 opacity-0"} styleTo={"opacity-100"}>
                                         <div>
-                                            <ProgressBar key={index} title={language.name} value={language.use_percent} color={color} />
+                                            <ProgressBar title={language.name} value={language.use_percent} color={color} />
                                         </div>
                                     </MountTransition>
                                 )

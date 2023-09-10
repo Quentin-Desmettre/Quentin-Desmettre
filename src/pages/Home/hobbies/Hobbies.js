@@ -65,8 +65,8 @@ const Hobbies = ({ language }) => {
             <Title title={texts.title} image={HobbiesImage} color="blue" index={1} />
             <div className='flex justify-between space-x-5 group'>
                 {hobbies.map((hobby, index) => (
-                    <MountTransition styleFrom={"opacity-0 transform translate-y-10"} styleTo={"opacity-100"} delay={delays[index]}>
-                        <div className="w-1/3" key={index}
+                    <MountTransition key={index} styleFrom={"opacity-0 transform translate-y-10"} styleTo={"opacity-100"} delay={delays[index]}>
+                        <div className="w-1/3"
                             onMouseEnter={() => handleMouseEnter(index)}
                             onMouseLeave={handleMouseLeave}>
                             <Hobby image={images[index]} title={hobby.title} className={getItemClassName(index)} text={hobby.description} />

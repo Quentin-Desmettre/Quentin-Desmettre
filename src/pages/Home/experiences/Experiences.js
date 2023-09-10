@@ -65,8 +65,8 @@ const ExperienceList = ({ experiences, months }) => {
         const isOnLeft = rowIndex % 2;
 
         rows.push(
-            <MountTransition styleFrom={`opacity-0 transform ${isOnLeft ? "-translate-x-10" : "translate-x-10"}`} styleTo={"opacity-100"}>
-                <div key={i} className={`flex items-center ${rowIndex % 2 ? "ml-24" : "mr-24"}`}>
+            <MountTransition key={i} styleFrom={`opacity-0 transform ${isOnLeft ? "-translate-x-10" : "translate-x-10"}`} styleTo={"opacity-100"}>
+                <div className={`flex items-center ${rowIndex % 2 ? "ml-24" : "mr-24"}`}>
                     {(hasNextRow && isOnLeft) ?
                         <Corner onLeft={true} opacity={cornerOpacity} />
                         : null

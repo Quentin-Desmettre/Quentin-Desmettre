@@ -6,7 +6,7 @@ import CircleButton from "../../common/CircleButton";
 import DropdownMenu from "../../common/DropdownMenu";
 import HoverableTextLink from "../../common/HoverableTextLink";
 import ElementRow from "../../common/ElementRow";
-import useScrollDirection from "../../../utils/useScrollDirection";
+import useScrollDirection from "../../../hooks/useScrollDirection";
 
 const HeaderText = ({ href, children }) => {
     return (

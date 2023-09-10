@@ -4,10 +4,12 @@ import Hobbies from "./hobbies/Hobbies"
 import Stats from "./stats/Stats"
 import "../../index.css"
 import Experiences from "./experiences/Experiences"
+import Topper from "./Topper"
 
 const Home = ({ language }) => {
     return (
-        <div className="flex justify-center">
+        <div className="flex flex-col justify-center items-center">
+            <Topper language={language} />
             <div className="w-9/12">
                 <AboutMe language={language} />
                 <Hobbies language={language} />
