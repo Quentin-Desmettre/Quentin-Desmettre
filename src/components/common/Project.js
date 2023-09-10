@@ -46,12 +46,13 @@ const IconList = ({ objects, type }) => {
     )
 }
 
-const Project = ({ name, description, url, created_at, updated_at, tags, links, name_color = "text-blue", underline_color = "bg-blue" }) => {
-    updated_at = convertDateFormat(updated_at);
+const Project = ({ project, name_color = "text-blue", underline_color = "bg-blue" }) => {
+    let { name, description, tags, links, created_at, last_updated, url } = project;
+    const updated_at = convertDateFormat(last_updated);
     created_at = convertDateFormat(created_at);
 
     return (
-        <div className="w-[32%]" key={url}>
+        <div className="w-full h-full" key={url}>
             <Box className="flex flex-col px-5 py-3 bg-main-background w-full h-full">
                 <div className="flex justify-between">
                     <HoverableTextLink className={"text-left text-xl w-fit truncate mr-8 " + name_color}

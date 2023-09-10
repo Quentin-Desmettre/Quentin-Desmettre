@@ -1,50 +1,28 @@
 require('dotenv').config()
-const PORT = process.env.PORT || 3000
+
+const PORT = process.env.PORT
 const express = require('express')
+const { handleEmailSend } = require('./routes/handleEmailSend')
+const { fetchUserData } = require('./routes/fetchUserData')
+
+// Express APP configuration
 const app = express()
-const { fetchData } = require('./utils/FetchData')
+const bodyParser = require('body-parser')
+const jsonParser = bodyParser.json()
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', process.env.CORS_ALLOWED_ORIGINS);
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    next();
+});
 
-app.listen(PORT, () => {
-    console.log("Server running on port 3000");
-})
+// GET routes
+app.get('/user/:username/:data_type?', fetchUserData)
 
-const sendError = (res, error, status=500) => {
-    res.status(status).send({
-        error: error
-    })
-}
+// POST routes
+app.post('/sendEmail', jsonParser, handleEmailSend)
 
-const checkUsername = (username) => {
-    // TODO: Find a way to handle multiple usernames, without surcharging the server with requests
-    if (!username || username !== 'Quentin-Desmettre') {
-        return false;
-    }
-    return true;
-}
-
-const checkDataType = (data_type) => {
-    if (!data_type)
-        return true;
-    if (!['stats', 'repos'].includes(data_type)) {
-        return false;
-    }
-    return true;
-}
-
-app.get('/user/:username/:data_type?', async (req, res) => {
-    const { username, data_type } = req.params;
-
-    // Error handling
-    if (!checkUsername(username) || !checkDataType(data_type)) {
-        sendError(res, "Invalid username or data type", 400);
-        return;
-    }
-
-    // Fetch data
-    const data = await fetchData(username, data_type);
-    if (!data) {
-        sendError(res, "Internal Server Error");
-        return;
-    }
-    res.send(data);
+// Starting https server
+const httpsServer = require('./httpsServer').createHttpsServer(app);
+httpsServer.listen(PORT, () => {
+    console.log("HTTPS server running on port " + PORT);
 })

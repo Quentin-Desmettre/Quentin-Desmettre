@@ -8,7 +8,6 @@ const getLanguageExtensions = (language) => {
     try {
         return EXTENSIONS_JSON[language].extensions;
     } catch (e) {
-        console.log("Unknown language: " + language);
         // TODO: report unknown language
         return [];
     }
@@ -75,11 +74,9 @@ const fetchGithubStats = async (username) => {
     // Finally, return the data.
 
     // Get the user's repositories.
-    console.log("Fetching repositories for " + username + "...")
     const repositories = await fetchAllPages('GET /users/{username}/repos', {
         username: username
     });
-    console.log("Fetched " + repositories.length + " repositories for " + username);
     projects = repositories.length;
 
     // Use Promise.all to perform requests in parallel and wait for all to finish.
@@ -116,7 +113,6 @@ const fetchGithubStats = async (username) => {
         lines_for_language = mergeCounters(lines_for_language, lines);
         bytes_for_language = mergeCounters(bytes_for_language, languagesResponse.data);
     }));
-    console.log("Finished fetching data for " + username + ".")
 
     return {
         commits: commits,

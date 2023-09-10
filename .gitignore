@@ -12,6 +12,7 @@ node_modules
 /build
 .env
 api/data/*.json
+auth
 
 # misc
 .DS_Store

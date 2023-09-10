@@ -80,6 +80,10 @@
     },
     "contact": {
         "title": "Contact",
+        "firstname": "Prénom",
+        "firstname_placeholder": "Votre prénom",
+        "lastname": "Nom",
+        "lastname_placeholder": "Votre nom",
         "email": "Email",
         "email_placeholder": "mail@example.com",
         "object": "Objet",
@@ -89,14 +93,37 @@
         "success": "Message envoyé avec succès",
         "error": "Une erreur est survenue",
         "errors": {
+            "empty_firstname": "Prénom vide",
+            "empty_lastname": "Nom vide",
             "invalid_email": "Email invalide",
             "empty_object": "Objet vide",
             "empty_message": "Message vide",
-            "too_long_message": "Message trop long"
+            "too_long_message": "Message trop long",
+            "too_long_firstname": "Prénom trop long",
+            "too_long_lastname": "Nom trop long",
+            "too_long_object": "Objet trop long",
+            "too_long_email": "Email trop long"
         }
     },
     "footer": {
         "email_copied": "Email copié"
+    },
+    "projects": {
+        "search_for_project": "Rechercher un projet...",
+        "loading_projects": "Chargement des projets...",
+        "featured_projects": "Projets à la une",
+        "sort": {
+            "title": "Trier par",
+            "by_name": "Nom",
+            "last_created": "Dernière création",
+            "first_created": "Première création",
+            "last_updated": "Dernière mise à jour",
+            "first_updated": "Première mise à jour"
+        },
+        "tags": {
+            "title": "Tags"
+        },
+        "all_projects": "Tous mes projets"
     },
     "no_translation": {
         "footer": {

@@ -1,12 +1,13 @@
 import React from 'react'
 import HobbiesImage from '../../../assets/titles/passions.png'
-import Title from '../../common/Title'
-import Box from '../../common/Box'
+import Title from '../../../components/common/Title'
+import Box from '../../../components/common/Box'
 import Bike from '../../../assets/bike.png'
 import Chess from '../../../assets/chess.png'
 import Informatique from '../../../assets/informatique.png'
 import { useState } from 'react'
 import { extractFirstNWords } from '../../../utils/Strings'
+import MountTransition from '../../../components/common/MountTransition'
 
 const Hobby = ({ image, title, className, text }) => {
     const isScaled = className.includes('scale-105');
@@ -28,7 +29,7 @@ const Hobby = ({ image, title, className, text }) => {
     )
 }
 
-const Hobbies = ({ language, destRef }) => {
+const Hobbies = ({ language }) => {
     const texts = language.texts.hobbies;
     const hobbies = texts.hobbies;
     const images = [
@@ -53,16 +54,24 @@ const Hobbies = ({ language, destRef }) => {
         return item !== selectedItem ? 'blur' : 'scale-105';
     };
 
+    const delays = [
+        "delay-0",
+        "delay-[100ms]",
+        "delay-[200ms]"
+    ]
+
     return (
-        <div ref={destRef}>
-            <Title title={texts.title} image={HobbiesImage} color="blue" />
+        <div id="hobbies">
+            <Title title={texts.title} image={HobbiesImage} color="blue" index={1} />
             <div className='flex justify-between space-x-5 group'>
                 {hobbies.map((hobby, index) => (
-                    <div className="w-1/3" key={index}
-                        onMouseEnter={() => handleMouseEnter(index)}
-                        onMouseLeave={handleMouseLeave}>
-                        <Hobby image={images[index]} title={hobby.title} className={getItemClassName(index)} text={hobby.description} />
-                    </div>
+                    <MountTransition styleFrom={"opacity-0 transform translate-y-10"} styleTo={"opacity-100"} delay={delays[index]}>
+                        <div className="w-1/3" key={index}
+                            onMouseEnter={() => handleMouseEnter(index)}
+                            onMouseLeave={handleMouseLeave}>
+                            <Hobby image={images[index]} title={hobby.title} className={getItemClassName(index)} text={hobby.description} />
+                        </div>
+                    </MountTransition>
                 ))}
             </div>
         </div>

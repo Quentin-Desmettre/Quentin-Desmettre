@@ -1,8 +1,8 @@
-import Title from "../../common/Title"
+import Title from "../../../components/common/Title"
 import { formatNumeric } from "../../../utils/Strings"
 import StatsIcon from "../../../assets/titles/stats.png"
-import ElementRow from "../../common/ElementRow"
-import Box from "../../common/Box"
+import ElementRow from "../../../components/common/ElementRow"
+import Box from "../../../components/common/Box"
 import React from "react"
 import { useState, useRef } from "react"
 import languageColors from "../../../utils/languages_colors"
@@ -11,6 +11,8 @@ import { fetchStats, defaultStatistics } from "../../../utils/fetchGithubData"
 import useMount from "../../../utils/useMount"
 import FeaturedProjects from "./FeaturedProjects"
 import StatBranch from "../../../assets/stat_branch.svg"
+import useScrollDirection from "../../../utils/useScrollDirection"
+import MountTransition from "../../../components/common/MountTransition"
 
 const Statistic = ({ title, value }) => {
 
@@ -48,6 +50,7 @@ const ProgressBar = ({ title, value, color }) => {
 const displayStats = (data, setStatistics) => {
     const frames = 20
     const animDuration = 1000
+    const delay = 200
     let executedFrames = 0
     let currentStats = defaultStatistics
 
@@ -58,33 +61,37 @@ const displayStats = (data, setStatistics) => {
         if (executedFrames === frames - 1)
             return targetValue[field]
         if (executedFrames < frames / 2)
-            return currentValue[field] + (targetValue[field] - currentValue[field]) / 3
+            return currentValue[field] + (targetValue[field] - currentValue[field]) / 4
         return currentValue[field] + (targetValue[field] - currentValue[field]) / 7
     }
-    const interval = setInterval(() => {
-        currentStats = {
-            repos: data.repos,
-            lines_of_code: increaseValue("lines_of_code"),
-            commits: increaseValue("commits"),
-            pull_requests: increaseValue("pull_requests"),
-            projects: increaseValue("projects"),
-            nb_languages: increaseValue("nb_languages"),
-            most_used_languages: currentStats.most_used_languages.map((language, index) => ({
-                name: language.name,
-                use_percent: increaseValue("use_percent", language, data.most_used_languages[index])
-            }))
-        }
-        setStatistics(currentStats)
-        executedFrames++
-        if (executedFrames >= frames) {
-            clearInterval(interval)
-        }
-    }, animDuration / frames)
+
+    setTimeout(() => {
+        const interval = setInterval(() => {
+            currentStats = {
+                repos: data.repos,
+                lines_of_code: increaseValue("lines_of_code"),
+                commits: increaseValue("commits"),
+                pull_requests: increaseValue("pull_requests"),
+                projects: increaseValue("projects"),
+                nb_languages: increaseValue("nb_languages"),
+                most_used_languages: currentStats.most_used_languages.map((language, index) => ({
+                    name: language.name,
+                    use_percent: increaseValue("use_percent", language, data.most_used_languages[index])
+                }))
+            }
+            setStatistics(currentStats)
+            executedFrames++
+            if (executedFrames >= frames) {
+                clearInterval(interval)
+            }
+        }, animDuration / frames)
+    }, delay)
 }
 
 const Stats = ({ language }) => {
     const texts = language.texts.statistics;
     const [statistics, setStatistics] = useState(defaultStatistics);
+    const scrollDirection = useScrollDirection();
 
     const tryFetchStats = async () => {
         if (statistics.lines_of_code !== 0)
@@ -93,15 +100,22 @@ const Stats = ({ language }) => {
         let data = await fetchStats(3, true);
         if (data === null)
             return;
-        displayStats(data, setStatistics)
+        if (scrollDirection === "up")
+            setStatistics(data)
+        else
+            displayStats(data, setStatistics)
     }
 
     const sectionRef = useRef();
-    useMount(sectionRef, tryFetchStats);
+    useMount(sectionRef, tryFetchStats, () => { setStatistics({ ...defaultStatistics, repos: statistics.repos }) });
     return (
         <div>
-            <Title title={texts.title} image={StatsIcon} color="green"
-            withLeftBar={<img src={StatBranch} alt="Branch" className="absolute left-3 top-16" />}>
+            <Title title={texts.title} image={StatsIcon} color="green" index={2}
+                withLeftBar={
+                    <MountTransition styleFrom="opacity-0" styleTo="" origin="origin-center" delay="delay-[700ms]">
+                        <img src={StatBranch} alt="Branch" className="absolute left-3 top-16" />
+                    </MountTransition>
+                }>
                 <div ref={sectionRef} className="ml-12 mb-16 mt-5">
                     <ElementRow className="mr-28 mb-12 w-9/12">
                         <Statistic title={texts.lines_of_code} value={statistics.lines_of_code} />
@@ -119,7 +133,13 @@ const Stats = ({ language }) => {
                                 let color = languageColors[language.name]?.color;
                                 if (color === undefined)
                                     color = 'bg-grey';
-                                return <ProgressBar key={index} title={language.name} value={language.use_percent} color={color} />
+                                return (
+                                    <MountTransition styleFrom={"transform -translate-x-10 opacity-0"} styleTo={"opacity-100"}>
+                                        <div>
+                                            <ProgressBar key={index} title={language.name} value={language.use_percent} color={color} />
+                                        </div>
+                                    </MountTransition>
+                                )
                             })}
                         </ElementRow>
                     </div>

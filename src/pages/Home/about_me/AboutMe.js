@@ -1,21 +1,21 @@
 import React from 'react'
 import InfoImage from '../../../assets/titles/info.png'
-import Title from '../../common/Title'
+import Title from '../../../components/common/Title'
 import MyFace from '../../../assets/my_face.png'
 import Download from '../../../assets/download.png'
 import { extractFirstNWords } from '../../../utils/Strings'
-import HoverableTextLink from '../../common/HoverableTextLink'
-import Box from '../../common/Box'
+import HoverableTextLink from '../../../components/common/HoverableTextLink'
+import Box from '../../../components/common/Box'
 import CV from '../../../assets/cv.pdf'
 import { downloadTxtFile } from '../../../utils/files'
 
-const AboutMe = ({ language, destRef }) => {
+const AboutMe = ({ language }) => {
     const texts = language.texts.about_me;
     const [firstTwoWords, restOfTheText] = extractFirstNWords(texts.description, 2)
 
     return (
-        <div ref={destRef}>
-            <Title title={texts.title} image={InfoImage} color="purple" topBorder={false} />
+        <div id="about_me">
+            <Title title={texts.title} image={InfoImage} color="purple" topBorder={false} index={0} />
             <Box className="flex px-8 py-4">
                 <div className='flex flex-col ml-6'>
                     <div className="h-5/6 flex items-center">

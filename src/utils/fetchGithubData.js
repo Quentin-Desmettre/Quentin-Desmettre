@@ -13,8 +13,25 @@ const defaultStatistics = {
     ]
 }
 
+const formatRepos = (repos) => {
+    let formatted = []
+
+    for (const repoName of Object.keys(repos)) {
+        formatted.push({
+            name: repoName,
+            description: repos[repoName].desc,
+            tags: repos[repoName].tags,
+            links: repos[repoName].links,
+            created_at: repos[repoName].created_at,
+            last_updated: repos[repoName].last_updated,
+            url: repos[repoName].url
+        })
+    }
+    return formatted
+}
+
 const fetchStats = async (nbMostUsedLanguages, sortByLines = true) => {
-    const response = await fetch('http://54.36.183.139:3000/user/Quentin-Desmettre');
+    const response = await fetch('https://quentin-desmettre.fr:3000/user/Quentin-Desmettre');
 
     if (!response.ok)
         return null;
@@ -32,7 +49,7 @@ const fetchStats = async (nbMostUsedLanguages, sortByLines = true) => {
     }).slice(0, nbMostUsedLanguages);
 
     return {
-        repos: repos,
+        repos: formatRepos(repos),
         lines_of_code: totalLines,
         commits: data.commits,
         pull_requests: data.pull_requests,
