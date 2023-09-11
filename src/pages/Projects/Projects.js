@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import CheckMark from '../../assets/tick.svg'
 import { fetchStats } from '../../utils/fetchGithubData'
 import Project from '../../components/common/Project'
@@ -7,6 +7,7 @@ import { isInArray } from '../../utils/Strings'
 import Star from '../../assets/star.png'
 import Repository from '../../assets/repository.png'
 import Loading from '../../assets/loading.svg'
+import { LanguageContext } from '../../contexts/language'
 
 const SearchBar = ({ text, setText, language }) => {
     return (
@@ -185,7 +186,8 @@ const DisplayProjects = ({ texts, searchFilter, projects, filteredProjects }) =>
     )
 }
 
-const Projects = ({ language }) => {
+const Projects = () => {
+    const { language } = useContext(LanguageContext)
     const texts = language.texts.projects;
     const sortByOptions = [
         { text: texts.sort.by_name, id: "name", comparator: (a, b) => a.name.toUpperCase().localeCompare(b.name.toUpperCase()) },

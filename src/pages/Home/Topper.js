@@ -1,40 +1,39 @@
 import { useCallback, useRef } from "react";
 import Particles from "react-tsparticles";
-//import { loadFull } from "tsparticles"; // if you are going to use `loadFull`, install the "tsparticles" package too.
-import { loadSlim } from "tsparticles-slim"; // if you are going to use `loadSlim`, install the "tsparticles-slim" package too.
+import { loadSlim } from "tsparticles-slim";
 import Config from "../../assets/particlesjs-config.json"
+import MountTransition from "../../components/common/MountTransition";
 
 const Topper = () => {
-    // const particlesInit = useCallback(async engine => {
-    //     console.log(engine);
-    //     // you can initiate the tsParticles instance (engine) here, adding custom shapes or presets
-    //     // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
-    //     // starting from v2 you can add only the features you need reducing the bundle size
-    //     //await loadFull(engine);
-    //     await loadSlim(engine);
-    // }, []);
+    const particlesInit = useCallback(async engine => {
+        await loadSlim(engine);
+    }, []);
 
-    // const particlesLoaded = useCallback(async container => {
-    //     await console.log(container);
-    // }, []);
+    const containerRef = useRef(null);
 
-    // const containerRef = useRef(null);
-
-    // return (
-    //     <div ref={containerRef} className="opacity-20">
-    //         <Particles
-    //             id="tsparticles"
-    //             init={particlesInit}
-    //             loaded={particlesLoaded}
-    //             options={Config}
-    //             container={containerRef}
-    //             className="w-32 h-32"
-    //             width="50"
-    //             height="50"
-    //         />
-    //     </div>
-    // );
-    return <></>
+    return (
+        <MountTransition styleFrom={"opacity-0"} duration="duration-[1800ms]">
+            <div ref={containerRef} className="relative flex flex-row items-center justify-center w-screen h-screen">
+                <Particles
+                    id="tsparticles"
+                    init={particlesInit}
+                    options={Config}
+                    container={containerRef}
+                    className="w-full h-full absolute top-0 left-0 z-0 opacity-90"
+                />
+                <MountTransition styleFrom={"opacity-0 transform translate-y-20"} duration="duration-[1800ms]">
+                    <div className="text-white flex flex-col mb-32">
+                        <span className="text-4xl font-bold">
+                            Quentin Desmettre
+                        </span>
+                        <span className="ml-1 mt-1">
+                            Developpeur FullStack & Mobile
+                        </span>
+                    </div>
+                </MountTransition>
+            </div>
+        </MountTransition>
+    );
 };
 
 export default Topper;

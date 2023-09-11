@@ -59,8 +59,6 @@ const Footer = () => {
             <span className="my-6 text-footer-text text-sm">
                 {no_translation.footer.mention}
             </span>
-
-
         </div>
     )
 }

@@ -28,7 +28,7 @@ const Header = () => {
     }
     const scrollDirection = useScrollDirection();
     return (
-        <div className={`z-10 h-24 sticky ${scrollDirection === "down" ? "-top-24" : "top-0"} transition-all duration-500 bg-header-background flex py-3 px-2 items-center justify-between`}>
+        <div className={`z-50 h-24 sticky ${scrollDirection === "down" ? "-top-24" : "top-0"} transition-all duration-500 bg-header-background flex py-3 px-2 items-center justify-between`}>
             <div className="flex items-center">
                 <CircleButton image={profile} href="/" className="mx-4" />
                 <Button image={contact} className="mx-4" onClick={handleClickOnCircle}>

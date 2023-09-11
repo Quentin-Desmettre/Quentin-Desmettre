@@ -177,7 +177,6 @@ const Contact = () => {
                         </div>
                     </div>
                 </Box>
-
             </div>
         </MountTransition>
     )
