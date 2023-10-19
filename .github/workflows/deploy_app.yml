@@ -1,6 +1,6 @@
 ####################################################################################################
-# The role of this workflow is to push the application to the gh-pages
-# branch of the repository, which will be used by GitHub Pages to deploy the application.
+# The role of this workflow is to push the application to the staging
+# server, which is a VPS.
 #
 # This workflow will be triggered on every push to the main branch (which is protected)
 #
@@ -8,14 +8,8 @@
 # the tests have already been run and passed.
 ####################################################################################################
 
-name: deploy-to-gh-pages
-run-name: "Deploy React app to GitHub Pages"
-
-env:
-  PROD_BRANCH: ${{ vars.PROD_BRANCH }}
-  GA_COMMITER_EMAIL: ${{ vars.GA_COMMITER_EMAIL }}
-  GA_COMMITER_NAME: ${{ vars.GA_COMMITER_NAME }}
-  GA_DEPLOYMENT_COMMIT: ${{ vars.GA_DEPLOYMENT_COMMIT }}
+name: deploy-to-vps
+run-name: "Deploy React app to VPS"
 
 on:
   push:
@@ -24,41 +18,30 @@ on:
 
 jobs:
   deploy:
-    name: Deploy
+    name: "Deploy React App to staging server"
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v1
-        with:
-          node-version: 20.5.1
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Configure Git
+      - name: Configure SSH
         run: |
-          git config --global user.name "$GA_COMMITER_NAME"
-          git config --global user.email "$GA_COMMITER_EMAIL"
+          ls
+          mkdir -p ~/.ssh/
+          echo "$SSH_KEY" > ~/.ssh/staging.key
+          chmod 600 ~/.ssh/staging.key
+          cat >>~/.ssh/config <<END
+          Host staging
+            HostName $SSH_HOST
+            User $SSH_USER
+            IdentityFile ~/.ssh/staging.key
+            StrictHostKeyChecking no
+          END
+        env:
+          SSH_USER: ${{ secrets.STAGING_SSH_USER }}
+          SSH_KEY: ${{ secrets.STAGING_SSH_KEY }}
+          SSH_HOST: ${{ secrets.STAGING_SSH_HOST }}
 
-      - name: Deploy to GitHub Pages
-        run: |
-          git branch -d $PROD_BRANCH || true
-          git checkout -b $PROD_BRANCH
+      - name: Pull the source
+        run: ssh staging 'cd /home/ubuntu/Quentin-Desmettre && git restore . && git checkout main && git pull && npm install'
 
-          npm run build
-
-          GLOBIGNORE="build:.git:.:.."
-          rm -rf * .gitignore
-
-          mv build/* .
-          rm -rf build
-
-          git add .
-          git commit -m "$GA_DEPLOYMENT_COMMIT"
-          git push -f --set-upstream origin $PROD_BRANCH
+      - name: Restart the App
+        run: ssh staging 'sudo systemctl restart quentin-desmettre'
