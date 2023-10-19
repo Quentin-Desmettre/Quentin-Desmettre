@@ -5,6 +5,8 @@ import { getOpacity } from "../../../utils/colors";
 import { convertToMonthYear } from "../../../utils/time";
 import ExpBranch from "../../../assets/exp_branch.svg";
 import MountTransition from "../../../components/common/MountTransition";
+import { useContext } from "react";
+import { LanguageContext } from "../../../contexts/language";
 
 const Experience = ({ experience, months, children }) => {
     if (!experience)
@@ -65,8 +67,8 @@ const ExperienceList = ({ experiences, months }) => {
         const isOnLeft = rowIndex % 2;
 
         rows.push(
-            <MountTransition styleFrom={`opacity-0 transform ${isOnLeft ? "-translate-x-10" : "translate-x-10"}`} styleTo={"opacity-100"}>
-                <div key={i} className={`flex items-center ${rowIndex % 2 ? "ml-24" : "mr-24"}`}>
+            <MountTransition key={i} styleFrom={`opacity-0 transform ${isOnLeft ? "-translate-x-10" : "translate-x-10"}`} styleTo={"opacity-100"}>
+                <div className={`flex items-center ${rowIndex % 2 ? "ml-24" : "mr-24"}`}>
                     {(hasNextRow && isOnLeft) ?
                         <Corner onLeft={true} opacity={cornerOpacity} />
                         : null
@@ -90,7 +92,8 @@ const ExperienceList = ({ experiences, months }) => {
     )
 }
 
-const Experiences = ({ language }) => {
+const Experiences = () => {
+    const { language } = useContext(LanguageContext)
     const texts = language.texts.experiences;
 
     return (

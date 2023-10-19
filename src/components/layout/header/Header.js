@@ -1,12 +1,13 @@
 import contact from "../../../assets/contact.png"
 import profile from "../../../assets/profile.png"
-import React from "react";
+import React, { useContext } from "react";
 import Button from "../../common/Button";
 import CircleButton from "../../common/CircleButton";
 import DropdownMenu from "../../common/DropdownMenu";
 import HoverableTextLink from "../../common/HoverableTextLink";
 import ElementRow from "../../common/ElementRow";
-import useScrollDirection from "../../../utils/useScrollDirection";
+import useScrollDirection from "../../../hooks/useScrollDirection";
+import { LanguageContext } from "../../../contexts/language";
 
 const HeaderText = ({ href, children }) => {
     return (
@@ -16,7 +17,8 @@ const HeaderText = ({ href, children }) => {
     )
 }
 
-const Header = ({ languages, language, setLanguage }) => {
+const Header = () => {
+    const { language, languages, setLanguage } = useContext(LanguageContext);
     const texts = language.texts;
 
     const handleClickOnCircle = () => {
@@ -26,7 +28,7 @@ const Header = ({ languages, language, setLanguage }) => {
     }
     const scrollDirection = useScrollDirection();
     return (
-        <div className={`z-10 h-24 sticky ${scrollDirection === "down" ? "-top-24" : "top-0"} transition-all duration-500 bg-header-background flex py-3 px-2 items-center justify-between`}>
+        <div className={`z-50 h-24 sticky ${scrollDirection === "down" ? "-top-24" : "top-0"} transition-all duration-500 bg-header-background flex py-3 px-2 items-center justify-between`}>
             <div className="flex items-center">
                 <CircleButton image={profile} href="/" className="mx-4" />
                 <Button image={contact} className="mx-4" onClick={handleClickOnCircle}>

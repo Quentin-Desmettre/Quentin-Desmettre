@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import HobbiesImage from '../../../assets/titles/passions.png'
 import Title from '../../../components/common/Title'
 import Box from '../../../components/common/Box'
@@ -8,6 +8,7 @@ import Informatique from '../../../assets/informatique.png'
 import { useState } from 'react'
 import { extractFirstNWords } from '../../../utils/Strings'
 import MountTransition from '../../../components/common/MountTransition'
+import { LanguageContext } from '../../../contexts/language'
 
 const Hobby = ({ image, title, className, text }) => {
     const isScaled = className.includes('scale-105');
@@ -29,7 +30,8 @@ const Hobby = ({ image, title, className, text }) => {
     )
 }
 
-const Hobbies = ({ language }) => {
+const Hobbies = () => {
+    const { language } = useContext(LanguageContext)
     const texts = language.texts.hobbies;
     const hobbies = texts.hobbies;
     const images = [
@@ -65,8 +67,8 @@ const Hobbies = ({ language }) => {
             <Title title={texts.title} image={HobbiesImage} color="blue" index={1} />
             <div className='flex justify-between space-x-5 group'>
                 {hobbies.map((hobby, index) => (
-                    <MountTransition styleFrom={"opacity-0 transform translate-y-10"} styleTo={"opacity-100"} delay={delays[index]}>
-                        <div className="w-1/3" key={index}
+                    <MountTransition key={index} styleFrom={"opacity-0 transform translate-y-10"} styleTo={"opacity-100"} delay={delays[index]}>
+                        <div className="w-1/3"
                             onMouseEnter={() => handleMouseEnter(index)}
                             onMouseLeave={handleMouseLeave}>
                             <Hobby image={images[index]} title={hobby.title} className={getItemClassName(index)} text={hobby.description} />

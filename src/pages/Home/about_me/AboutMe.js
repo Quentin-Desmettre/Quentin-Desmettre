@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import InfoImage from '../../../assets/titles/info.png'
 import Title from '../../../components/common/Title'
 import MyFace from '../../../assets/my_face.png'
@@ -8,8 +8,10 @@ import HoverableTextLink from '../../../components/common/HoverableTextLink'
 import Box from '../../../components/common/Box'
 import CV from '../../../assets/cv.pdf'
 import { downloadTxtFile } from '../../../utils/files'
+import { LanguageContext } from '../../../contexts/language'
 
-const AboutMe = ({ language }) => {
+const AboutMe = () => {
+    const { language } = useContext(LanguageContext);
     const texts = language.texts.about_me;
     const [firstTwoWords, restOfTheText] = extractFirstNWords(texts.description, 2)
 
@@ -25,7 +27,7 @@ const AboutMe = ({ language }) => {
                         </span>
                     </div>
 
-                    <button onClick={() => {downloadTxtFile(CV, "CV Quentin Desmettre.pdf")}} className='w-fit mb-10 font-bold flex items-center'>
+                    <button onClick={() => { downloadTxtFile(CV, "CV Quentin Desmettre.pdf") }} className='w-fit mb-10 font-bold flex items-center'>
                         <div className="p-2 bg-purple rounded-lg mr-3 w-10 h-10 flex items-center justify-center">
                             <img src={Download} alt="Download" className="w-full" />
                         </div>

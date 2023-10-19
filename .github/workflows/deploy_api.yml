@@ -1,4 +1,5 @@
-name: "Build WebSocket server and restart it"
+name: "Deploy API to staging server"
+run-name: "Deploy API to staging server"
 on:
   push:
     branches:
@@ -45,8 +46,8 @@ jobs:
           SSH_KEY: ${{ secrets.STAGING_SSH_KEY }}
           SSH_HOST: ${{ secrets.STAGING_SSH_HOST }}
 
-      - name: Pull & build the source
-        run: ssh staging 'cd /home/ubuntu/Quentin-Desmettre && git checkout api && git restore . && git pull && cd api && npm install'
+      - name: Pull the source
+        run: ssh staging 'cd /home/ubuntu/Quentin-Desmettre-API && git restore . && git checkout api && git pull && cd api && npm install'
 
       - name: Restart the API
         run: ssh staging 'sudo systemctl restart quentin-desmettre-api'

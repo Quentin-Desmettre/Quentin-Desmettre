@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react'
-import useMount from '../../utils/useMount'
+import useMount from '../../hooks/useMount'
 
 const MountTransition = ({ children, styleFrom, styleTo, duration = "duration-1000", delay="delay-0", origin="" }) => {
     const [isVisible, setIsVisible] = useState(false)
