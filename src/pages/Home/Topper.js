@@ -27,7 +27,7 @@ const Topper = () => {
                             Quentin Desmettre
                         </span>
                         <span className="ml-1 mt-1">
-                            Developpeur FullStack & Mobile
+                            Developpeur informatique
                         </span>
                     </div>
                 </MountTransition>

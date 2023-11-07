@@ -9,6 +9,13 @@ const FeaturedProjects = ({ language, projects }) => {
     // TODO: Filter projects
     // projects = projects.filter((project) => project.featured);
     let projectsDisplayed = 0;
+    const projectsName = [
+        "EpiLinter",
+        "Epitech-Corewar",
+        "GomokuAi"
+    ]
+    projects = projectsName.map((name) => projects.find((project) => project.name === name))
+    console.log(projects)
     return (
         <MountTransition styleFrom={"opacity-0 transform -translate-x-10"} styleTo={"opacity-100"}>
             <div className="bg-light-background rounded-lg outline-main-stroke outline outline-1 p-5 relative space-y-5">
@@ -18,7 +25,7 @@ const FeaturedProjects = ({ language, projects }) => {
                 </div>
 
                 <div className="flex justify-evenly space-x-6 w-full">
-                    {Object.keys(projects).map((key) => {
+                    {!projects.some((project) => project === undefined) && Object.keys(projects).map((key) => {
                         if (projectsDisplayed++ >= 3)
                             return null;
                         return <Project key={key} name={key} name_color="text-green-text" underline_color="bg-green-text"
