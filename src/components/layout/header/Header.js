@@ -1,5 +1,5 @@
 import contact from "../../../assets/contact.png"
-import profile from "../../../assets/profile.png"
+import profile from "../../../assets/profile.jpg"
 import React, { useContext } from "react";
 import Button from "../../common/Button";
 import CircleButton from "../../common/CircleButton";

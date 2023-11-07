@@ -36,7 +36,7 @@ const AboutMe = () => {
                         </HoverableTextLink>
                     </button>
                 </div>
-                <img src={MyFace} alt="My face" className="rounded-2xl w-60" />
+                <img src={MyFace} alt="My face" className="rounded-2xl w-60 ml-12" />
             </Box>
         </div>
     )

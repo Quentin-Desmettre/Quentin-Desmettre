@@ -9,11 +9,11 @@
         "projects": "Projets"
     },
     "first_screen": {
-        "catch_phrase": "Développeur web full stack"
+        "catch_phrase": "Développeur informatique"
     },
     "about_me": {
         "title": "À propos de moi",
-        "description": "Je suis un développeur web full stack passionné par les nouvelles technologies. J'aime apprendre et découvrir de nouvelles choses. Je suis curieux et j'aime relever de nouveaux défis. Je suis à la recherche d'un stage de fin d'études de 6 mois à partir de février 2021.",
+        "description": "Etudiant en informatique en troisème année à Epitech Lille, je suis à la recherche d'un stage de 4 mois, du 1er février au 7 juin 2024, afin d'améliorer mes compétences ou d'acquérir une expertise dans de novueaux domaines.",
         "cv_link": "Télécharger mon CV"
     },
     "hobbies": {
@@ -21,15 +21,15 @@
         "hobbies": [
             {
                 "title": "Sports",
-                "description": "Je pratique le football depuis l'âge de 6 ans. J'ai joué en club pendant 10 ans et je continue à jouer avec des amis. J'aime aussi regarder des matchs de football à la télévision."
+                "description": ""
             },
             {
                 "title": "Informatique",
-                "description": "J'aime passer du temps sur mon ordinateur. Je joue à des jeux vidéo et je regarde des vidéos sur YouTube. J'aime aussi apprendre de nouvelles choses sur l'informatique."
+                "description": ""
             },
             {
                 "title": "Echecs",
-                "description": "Je joue aux échecs depuis l'âge de 6 ans. J'ai participé à des tournois et j'ai gagné quelques prix. J'aime jouer aux échecs avec des amis."
+                "description": ""
             }
         ]
     },
@@ -66,15 +66,6 @@
                 "start_date": "06/02/2023",
                 "end_date": "N/A",
                 "description": "En tant que membre à part entière de l'équipe pédagogique d'Epitech, encadrement, accompagnement, aide pédagogique et technique aux étudiants."
-            },
-            {
-                "title": "Développeur Full Stack",
-                "company": "S Com System",
-                "logo": "scomsystem.png",
-                "location": "Roubaix",
-                "start_date": "04/07/2022",
-                "end_date": "23/12/2022",
-                "description": "Développement complet de logiciels web de gestion.\nGestion des relations clients.\nMise en production et intégration continue."
             }
         ]
     },
