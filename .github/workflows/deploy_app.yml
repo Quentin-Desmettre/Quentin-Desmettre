@@ -45,7 +45,7 @@ jobs:
           SSH_HOST: ${{ secrets.STAGING_SSH_HOST }}
 
       - name: Pull the source code on the server
-        run: ssh staging '(cd ${{ env.APP_PATH }} || (git clone ${{ env.REPO_URL }} ${{ env.APP_PATH }} && cd ${{ env.APP_PATH }})) && git fetch && git reset --hard origin/main)'
+        run: ssh staging '(cd ${{ env.APP_PATH }} || (git clone ${{ env.REPO_URL }} ${{ env.APP_PATH }} && cd ${{ env.APP_PATH }})) && git fetch && git reset --hard origin/main'
 
       - name: Restart the app
         run: ssh staging 'cd ${{ env.APP_PATH }} && docker compose down --remove-orphans && docker-compose up --build -d front-prod'
