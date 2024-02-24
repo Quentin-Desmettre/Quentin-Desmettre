@@ -16,6 +16,10 @@ on:
     branches:
       - main
 
+env:
+  APP_PATH: /home/quentin/Quentin-Desmettre
+  REPO_URL: git@github.com:Quentin-Desmettre/Quentin-Desmettre.github.io.git
+
 jobs:
   deploy:
     name: "Deploy React App to staging server"
@@ -40,11 +44,8 @@ jobs:
           SSH_KEY: ${{ secrets.STAGING_SSH_KEY }}
           SSH_HOST: ${{ secrets.STAGING_SSH_HOST }}
 
-      - name: Pull the source
-        run: ssh staging 'cd /home/ubuntu/Quentin-Desmettre && git restore . && git checkout main && git pull && npm install'
+      - name: Pull the source code on the server
+        run: ssh staging '(cd ${{ env.APP_PATH }} || (git clone ${{ env.REPO_URL }} ${{ env.APP_PATH }} && cd ${{ env.APP_PATH }})) && git fetch && git reset --hard origin/main)'
 
-      - name: Build
-        run: ssh staging 'cd /home/ubuntu/Quentin-Desmettre && npm run build'
-
-      - name: Restart the App
-        run: ssh staging 'sudo systemctl restart quentin-desmettre'
+      - name: Restart the app
+        run: ssh staging 'cd ${{ env.APP_PATH }} && docker compose down --remove-orphans && docker-compose up --build -d front-prod'

@@ -1,0 +1,22 @@
+version: "3.8"
+
+services:
+  front-dev:
+    container_name: quentin-desmettre-dev
+    image: quentin-desmettre-dev
+    build:
+      context: .
+      dockerfile: ./dockerfile/Dockerfile.front.dev
+    volumes:
+      - ./src:/app/src
+    ports:
+      - "3000:3000"
+
+  front-prod:
+    container_name: quentin-desmettre-prod
+    image: quentin-desmettre-prod
+    build:
+      context: .
+      dockerfile: ./dockerfile/Dockerfile.front.prod
+    ports:
+      - "80:80"
