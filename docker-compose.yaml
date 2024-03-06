@@ -18,8 +18,10 @@ services:
     build:
       context: .
       dockerfile: ./dockerfile/Dockerfile.front.prod
+    volumes:
+      - ${SSL_CERTIFICATE_DIRECTORY}:/app/ssl
     ports:
-      - "80:80"
+      - "443:443"
 
   api:
     container_name: quentin-desmettre-api
@@ -27,6 +29,7 @@ services:
     working_dir: /app
     volumes:
       - ./api:/app
-    command: "npm run start"
+      - ${SSL_CERTIFICATE_DIRECTORY}:/app/ssl
+    command: sh -c 'npm install && npm run start'
     ports:
       - "3000:3000"
