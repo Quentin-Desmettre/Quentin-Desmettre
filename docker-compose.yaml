@@ -20,3 +20,13 @@ services:
       dockerfile: ./dockerfile/Dockerfile.front.prod
     ports:
       - "80:80"
+
+  api:
+    container_name: quentin-desmettre-api
+    image: node:21
+    working_dir: /app
+    volumes:
+      - ./api:/app
+    command: "npm run start"
+    ports:
+      - "3000:3000"
