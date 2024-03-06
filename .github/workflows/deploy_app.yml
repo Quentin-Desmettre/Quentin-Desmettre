@@ -45,7 +45,7 @@ jobs:
           SSH_HOST: ${{ secrets.STAGING_SSH_HOST }}
 
       - name: Ensure presence of the app folder
-        run: ssh staging 'rm -rf ${{ env.APP_PATH }} && git clone ${{ env.REPO_URL }} ${{ env.APP_PATH }}'
+        run: ssh staging 'sudo rm -rf ${{ env.APP_PATH }} && git clone ${{ env.REPO_URL }} ${{ env.APP_PATH }}'
 
       - name: Pull the source code on the server
         run: ssh staging 'cd ${{ env.APP_PATH }} && git fetch && git reset --hard origin/main'
